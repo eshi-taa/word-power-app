@@ -1,0 +1,35 @@
+[
+  {
+    "root": "CRED",
+    "meaning": "believe",
+    "words": [
+      { "word": "credible", "definition": "able to be believed or trusted", "example": "The witness gave a credible account of what happened.", "phonetic": "KRED-uh-bul" },
+      { "word": "incredible", "definition": "too extraordinary to be believed", "example": "The athlete's speed was incredible to witness.", "phonetic": "in-KRED-uh-bul" },
+      { "word": "credulous", "definition": "too willing to believe things without enough evidence", "example": "A credulous person is easily fooled by scams.", "phonetic": "KREJ-uh-lus" },
+      { "word": "incredulous", "definition": "unwilling or unable to believe something", "example": "She was incredulous when she heard the surprising news.", "phonetic": "in-KREJ-uh-lus" },
+      { "word": "credentials", "definition": "qualifications or achievements that make someone trusted", "example": "The doctor's credentials were displayed on the wall.", "phonetic": "kruh-DEN-shulz" }
+    ]
+  },
+  {
+    "root": "RUPT",
+    "meaning": "break",
+    "words": [
+      { "word": "rupt", "definition": "to break or burst suddenly", "example": "The volcano began to rupt without warning.", "phonetic": "RUPT" },
+      { "word": "interrupt", "definition": "to break into a conversation or activity", "example": "Please do not interrupt while someone is speaking.", "phonetic": "in-tuh-RUPT" },
+      { "word": "abrupt", "definition": "sudden and unexpected, without warning", "example": "The meeting came to an abrupt end.", "phonetic": "uh-BRUPT" },
+      { "word": "disrupt", "definition": "to break apart the normal flow of something", "example": "The storm disrupted train services across the city.", "phonetic": "dis-RUPT" },
+      { "word": "erupt", "definition": "to break out suddenly with force", "example": "The crowd erupted in applause after the speech.", "phonetic": "ih-RUPT" }
+    ]
+  },
+  {
+    "root": "DICT",
+    "meaning": "say or speak",
+    "words": [
+      { "word": "dictate", "definition": "to say something aloud for someone else to write down", "example": "The manager would dictate letters to her assistant.", "phonetic": "DIK-tayt" },
+      { "word": "predict", "definition": "to say what will happen before it occurs", "example": "Experts predict rain for the weekend.", "phonetic": "prih-DIKT" },
+      { "word": "verdict", "definition": "the official decision spoken in a court of law", "example": "The jury delivered its verdict after two days.", "phonetic": "VUR-dikt" },
+      { "word": "contradict", "definition": "to say the opposite of what someone else said", "example": "The new evidence seemed to contradict his statement.", "phonetic": "kon-truh-DIKT" },
+      { "word": "diction", "definition": "the way words are chosen and spoken", "example": "Her diction was clear and easy to understand.", "phonetic": "DIK-shun" }
+    ]
+  }
+]

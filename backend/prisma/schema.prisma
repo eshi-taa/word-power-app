@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  firebaseUid String?  @unique
+  fcmToken    String?
+  createdAt   DateTime @default(now())
+  progress    UserProgress[]
+  quizResults QuizResult[]
+}
+
+model WordGroup {
+  id      String  @id @default(cuid())
+  root    String  @unique
+  meaning String
+  words   Word[]
+  progress UserProgress[]
+}
+
+model Word {
+  id         String    @id @default(cuid())
+  word       String
+  definition String
+  example    String
+  phonetic   String
+  audioUrl   String?
+  groupId    String
+  group      WordGroup @relation(fields: [groupId], references: [id])
+}
+
+model UserProgress {
+  id           String    @id @default(cuid())
+  userId       String
+  groupId      String
+  studied      Boolean   @default(false)
+  studiedAt    DateTime?
+  quizUnlocked Boolean   @default(false)
+  streak       Int       @default(0)
+  user         User      @relation(fields: [userId], references: [id])
+  group        WordGroup @relation(fields: [groupId], references: [id])
+  @@unique([userId, groupId])
+}
+
+model QuizResult {
+  id      String   @id @default(cuid())
+  userId  String
+  groupId String
+  score   Int
+  passed  Boolean
+  takenAt DateTime @default(now())
+  user    User     @relation(fields: [userId], references: [id])
+}

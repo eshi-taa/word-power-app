@@ -1,0 +1,7 @@
+node_modules/
+.env
+.env.local
+*.log
+firebase-service-account.json
+
+/src/generated/prisma
