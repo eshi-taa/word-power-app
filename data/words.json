@@ -667,5 +667,599 @@
         ]
       }
     ]
+  },
+  {
+    "chapterTitle": "How To Talk About a Variety of Personal Characteristics",
+    "order": 5,
+    "mainWords": [
+      {
+        "word": "obsequious",
+        "meaning": "巴结的，奉承迎合 / subservient, fawning",
+        "roots": [
+          {
+            "name": "ob-",
+            "meaning": "after",
+            "derivedWords": [
+              { "word": "obsequious", "definition": "adj. 巴结的，谄媚的，奉承迎合的", "example": "The waiters were obsequious, bowing low at every order.", "phonetic": "ub-SEE-kwee-us" }
+            ]
+          },
+          {
+            "name": "sequor",
+            "meaning": "to follow",
+            "derivedWords": [
+              { "word": "obsequies", "definition": "n. 葬礼；丧礼", "example": "The family gathered for the late king's obsequies.", "phonetic": "AHB-sih-kweez" },
+              { "word": "subsequent", "definition": "adj. 随后的，后来的", "example": "Subsequent events proved that his theory was correct.", "phonetic": "SUB-sih-kwunt" },
+              { "word": "sequel", "definition": "n. 结果，结局；续集", "example": "The movie was so popular that they filmed a sequel.", "phonetic": "SEE-kwul" },
+              { "word": "sequence", "definition": "n. 一系列，顺序，连续", "example": "The cards were arranged in numerical sequence.", "phonetic": "SEE-kwuns" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "querulous",
+        "meaning": "抱怨的 / complaining, whining",
+        "roots": [
+          {
+            "name": "queror",
+            "meaning": "to complain",
+            "derivedWords": [
+              { "word": "querulous", "definition": "adj. 抱怨的，爱发牢骚的", "example": "The querulous customer complained about the service.", "phonetic": "KWER-yuh-lus" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "supercilious",
+        "meaning": "傲慢的 / arrogant, condescending",
+        "roots": [
+          {
+            "name": "super",
+            "meaning": "above",
+            "derivedWords": []
+          },
+          {
+            "name": "cilium",
+            "meaning": "eyelid",
+            "derivedWords": [
+              { "word": "supercilious", "definition": "adj. 傲慢的；目空一切的", "example": "She gave them a supercilious look and walked away.", "phonetic": "soo-per-SIL-ee-us" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "obstreperous",
+        "meaning": "任性的，喧闹的 / noisy, unruly, hard to control",
+        "roots": [
+          {
+            "name": "strepo",
+            "meaning": "to make a noise",
+            "derivedWords": [
+              { "word": "obstreperous", "definition": "adj. 任性的；喧闹的；难控制的", "example": "The obstreperous children refused to go to sleep.", "phonetic": "ub-STREP-er-us" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "impecunious",
+        "meaning": "一贫如洗 / penniless, poor",
+        "roots": [
+          {
+            "name": "im-",
+            "meaning": "negative prefix",
+            "derivedWords": []
+          },
+          {
+            "name": "pecus",
+            "meaning": "cattle (ancient wealth measure)",
+            "derivedWords": [
+              { "word": "impecunious", "definition": "adj. 一贫如洗的；贫困的", "example": "The impecunious student lived on noodles.", "phonetic": "im-pih-KYOO-nee-us" },
+              { "word": "pecuniary", "definition": "adj. 金钱的，钱财的", "example": "He had no pecuniary interest in the business.", "phonetic": "pih-KYOO-nee-ehr-ee" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "chivalrous",
+        "meaning": "有骑士风度的 / courteous, gallant",
+        "roots": [
+          {
+            "name": "cheval / caval-",
+            "meaning": "horse",
+            "derivedWords": [
+              { "word": "chivalrous", "definition": "adj. 彬彬有礼的；有骑士风度的", "example": "He made a chivalrous gesture by offering his coat.", "phonetic": "SHIV-ul-rus" },
+              { "word": "cavalcade", "definition": "n. 骑马行列；车队", "example": "The royal cavalcade moved through the city.", "phonetic": "kav-ul-KAYD" },
+              { "word": "cavalier", "definition": "adj. 傲慢的 n. 骑士", "example": "She dismissed the complaints in a cavalier manner.", "phonetic": "kav-uh-LEER" },
+              { "word": "cavalry", "definition": "n. 骑兵", "example": "The cavalry charged across the plain.", "phonetic": "KAV-ul-ree" },
+              { "word": "chivalry", "definition": "n. 骑士精神", "example": "The age of chivalry is long gone.", "phonetic": "SHIV-ul-ree" }
+            ]
+          },
+          {
+            "name": "equus-",
+            "meaning": "horse",
+            "derivedWords": [
+              { "word": "equestrian", "definition": "n. 骑手 adj. 骑马的", "example": "She won gold in the equestrian event.", "phonetic": "ih-KWEST-ree-un" },
+              { "word": "equestrienne", "definition": "n. 女骑手", "example": "The skilled equestrienne completed the jump easily.", "phonetic": "ih-kwest-ree-EN" },
+              { "word": "equine", "definition": "adj. 马的；像马的", "example": "The vet specialized in equine diseases.", "phonetic": "EE-kwine" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "innocuous",
+        "meaning": "无害的 / harmless, safe",
+        "roots": [
+          {
+            "name": "noceo",
+            "meaning": "to injure",
+            "derivedWords": [
+              { "word": "innocuous", "definition": "adj. 无害的；无伤大雅的", "example": "The joke was innocuous and offended no one.", "phonetic": "ih-NAHK-yoo-us" },
+              { "word": "innocent", "definition": "adj. 无辜的；天真的", "example": "The jury found the defendant innocent.", "phonetic": "IN-uh-sunt" },
+              { "word": "noxious", "definition": "adj. 有毒的；有害的", "example": "The factory emitted noxious fumes.", "phonetic": "NAHK-shus" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "bibulous",
+        "meaning": "喝酒的，饮酒的 / fond of drinking",
+        "roots": [
+          {
+            "name": "bibo-",
+            "meaning": "to drink",
+            "derivedWords": [
+              { "word": "bibulous", "definition": "adj. 喝酒的；吸水性强的", "example": "The bibulous uncle was always near the bar.", "phonetic": "BIB-yoo-lus" },
+              { "word": "imbibe", "definition": "v. 喝，吸入，吸收", "example": "Plants imbibe moisture from the soil.", "phonetic": "im-BYBE" },
+              { "word": "bib", "definition": "n. 围嘴", "example": "The baby wore a clean bib for dinner.", "phonetic": "BIB" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "cadaverous",
+        "meaning": "形容枯槁 / pale, looking like a corpse",
+        "roots": [
+          {
+            "name": "cada",
+            "meaning": "to fall",
+            "derivedWords": [
+              { "word": "cadaverous", "definition": "adj. 形容枯槁的；像尸体一样的", "example": "He had a cadaverous face after weeks of illness.", "phonetic": "kuh-DAV-er-us" },
+              { "word": "cadaver", "definition": "n. 尸体", "example": "Medical students dissect a cadaver in anatomy class.", "phonetic": "kuh-DAV-er" },
+              { "word": "decadent", "definition": "adj. 颓废的；堕落的", "example": "The decadent lifestyle led to their ruin.", "phonetic": "DEK-uh-dunt" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "dolorous",
+        "meaning": "痛苦的，悲哀的 / sorrowful, painful",
+        "roots": [
+          {
+            "name": "doleo",
+            "meaning": "to suffer or grieve",
+            "derivedWords": [
+              { "word": "dolorous", "definition": "adj. 痛苦的；悲哀的", "example": "The dolorous song brought tears to her eyes.", "phonetic": "DOH-ler-us" },
+              { "word": "dolor", "definition": "n. 悲痛，哀伤", "example": "She expressed her deep dolor at the loss.", "phonetic": "DOH-ler" },
+              { "word": "doleful", "definition": "adj. 悲伤的，忧郁的", "example": "He gave me a doleful look when I said goodbye.", "phonetic": "DOLE-ful" },
+              { "word": "condole", "definition": "vi. 慰问，吊唁", "example": "We condole with you on your great loss.", "phonetic": "kun-DOLE" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterTitle": "How To Talk About Liars And Lying",
+    "order": 6,
+    "mainWords": [
+      {
+        "word": "notorious",
+        "meaning": "臭名昭著的骗子 / widely unfavorably known",
+        "roots": [
+          {
+            "name": "notus",
+            "meaning": "know",
+            "derivedWords": [
+              { "word": "notorious", "definition": "adj. 臭名昭著的，声名狼藉的", "example": "He is a notorious liar whose words cannot be trusted.", "phonetic": "noh-TOR-ee-us" },
+              { "word": "notoriety", "definition": "n. 恶名，声名狼藉", "example": "The gangster gained notoriety for his crimes.", "phonetic": "noh-tuh-RY-uh-tee" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "consummate",
+        "meaning": "说谎老手 / perfect, highly skilled",
+        "roots": [
+          {
+            "name": "summus",
+            "meaning": "highest",
+            "derivedWords": [
+              { "word": "consummate", "definition": "adj. 完美的；圆满的 vt. 完成；实现", "example": "He is a consummate artist who spends hours practicing.", "phonetic": "kun-SUM-it" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "incorrigible",
+        "meaning": "积习难改的骗子 / beyond reform, uncorrectable",
+        "roots": [
+          {
+            "name": "in-",
+            "meaning": "negative prefix",
+            "derivedWords": []
+          },
+          {
+            "name": "corrigo",
+            "meaning": "to correct",
+            "derivedWords": [
+              { "word": "incorrigible", "definition": "adj. 积习难改的；不可救药的", "example": "The incorrigible child refused to sit still.", "phonetic": "in-KOR-ih-jih-bul" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "inveterate",
+        "meaning": "说谎成瘾的人 / chronic, long-established",
+        "roots": [
+          {
+            "name": "vetus",
+            "meaning": "old",
+            "derivedWords": [
+              { "word": "inveterate", "definition": "adj. 根深蒂固的；成瘾的", "example": "An inveterate gambler has a hard time quitting.", "phonetic": "in-VET-er-it" },
+              { "word": "inveteracy", "definition": "n. 根深蒂固，积习，慢性", "example": "The inveteracy of his habits made change impossible.", "phonetic": "in-VET-er-uh-see" }
+            ]
+          },
+          {
+            "name": "senex",
+            "meaning": "old",
+            "derivedWords": []
+          }
+        ]
+      },
+      {
+        "word": "congenital",
+        "meaning": "天生的骗子 / existing from birth",
+        "roots": [
+          {
+            "name": "genesis",
+            "meaning": "birth, origin",
+            "derivedWords": [
+              { "word": "congenital", "definition": "adj. 天生的，先天的", "example": "He has a congenital heart defect.", "phonetic": "kun-JEN-ih-tul" },
+              { "word": "genetics", "definition": "n. 遗传学", "example": "The scientist did research in molecular genetics.", "phonetic": "juh-NET-iks" },
+              { "word": "gene", "definition": "n. 基因", "example": "Genes determine physical traits.", "phonetic": "JEEN" },
+              { "word": "genealogist", "definition": "n. 系谱学家", "example": "The genealogist traced our family tree.", "phonetic": "jee-nee-AL-uh-jist" },
+              { "word": "genesis", "definition": "n. 起源，发生", "example": "The genesis of the project was a simple idea.", "phonetic": "JEN-ih-sis" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "chronic",
+        "meaning": "常年说谎的骗子 / repeating, constant",
+        "roots": [
+          {
+            "name": "chronos",
+            "meaning": "time",
+            "derivedWords": [
+              { "word": "chronic", "definition": "adj. 长期的；慢性的；习惯性的", "example": "He suffers from chronic back pain.", "phonetic": "KRAH-nik" },
+              { "word": "anachronism", "definition": "n. 时代错误，不合潮流的人/物", "example": "A typewriter is an anachronism in a modern office.", "phonetic": "uh-NAK-ruh-niz-um" },
+              { "word": "chronological", "definition": "adj. 按时间顺序的", "example": "The photos were arranged in chronological order.", "phonetic": "krah-nuh-LAHJ-ih-kul" },
+              { "word": "chronology", "definition": "n. 年代学，年表", "example": "The history teacher asked for a chronology of the war.", "phonetic": "kruh-NAHL-uh-jee" },
+              { "word": "chronometer", "definition": "n. 精密时计，天文钟", "example": "Ships use a chronometer for navigation.", "phonetic": "kruh-NAHM-uh-ter" },
+              { "word": "chronologist", "definition": "n. 年代学者", "example": "The chronologist verified the timeline of the ancient ruins.", "phonetic": "kruh-NAHL-uh-jist" },
+              { "word": "synchronize", "definition": "v. 使同步；使同时发生", "example": "Let's synchronize our watches before starting.", "phonetic": "SIN-kruh-nize" }
+            ]
+          },
+          {
+            "name": "pathos",
+            "meaning": "disease, feeling",
+            "derivedWords": [
+              { "word": "sympathy", "definition": "n. 同情；同情心", "example": "We send our deepest sympathy to the family.", "phonetic": "SIM-puh-thee" },
+              { "word": "pathology", "definition": "n. 病理学", "example": "He studied pathology at the medical center.", "phonetic": "puh-THAHL-uh-jee" },
+              { "word": "antipathy", "definition": "n. 反感，厌恶", "example": "He made no attempt to hide his antipathy to the program.", "phonetic": "an-TIP-uh-thee" },
+              { "word": "apathy", "definition": "n. 冷漠，无兴趣", "example": "Public apathy led to low voter turnout.", "phonetic": "AP-uh-thee" },
+              { "word": "empathy", "definition": "n. 移情，共鸣", "example": "She had deep empathy for the homeless.", "phonetic": "EM-puh-thee" },
+              { "word": "pathetic", "definition": "adj. 可怜的；悲哀的", "example": "The lost puppy was a pathetic sight.", "phonetic": "puh-THET-ik" },
+              { "word": "telepathy", "definition": "n. 心灵感应", "example": "They communicated by telepathy.", "phonetic": "tuh-LEP-uh-thee" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "pathological",
+        "meaning": "病态撒谎者 / diseased liar",
+        "roots": [
+          {
+            "name": "pathos",
+            "meaning": "disease, suffering",
+            "derivedWords": [
+              { "word": "pathological", "definition": "adj. 病态的；由疾病引起的", "example": "She is a pathological spender who is deep in debt.", "phonetic": "path-uh-LAHJ-ih-kul" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "unconscionable",
+        "meaning": "无意的说谎者 / without conscience",
+        "roots": [
+          {
+            "name": "un-",
+            "meaning": "negative prefix",
+            "derivedWords": []
+          },
+          {
+            "name": "sciens",
+            "meaning": "knowing",
+            "derivedWords": [
+              { "word": "unconscionable", "definition": "adj. 无良心的；不合理的；过分的", "example": "Taking all the profit for yourself is unconscionable.", "phonetic": "un-KAHN-shun-uh-bul" },
+              { "word": "unconscionability", "definition": "n. 不受良心控制；违背良心", "example": "The contract was void due to its unconscionability.", "phonetic": "un-kahn-shun-uh-BIL-ih-tee" },
+              { "word": "omniscient", "definition": "adj. 全知的；无所不知的", "example": "The storyteller seemed to have an omniscient view.", "phonetic": "ahm-NISH-unt" },
+              { "word": "prescient", "definition": "adj. 预知的；有先见之明的", "example": "Her prescient warning saved them from disaster.", "phonetic": "PREH-shee-unt" },
+              { "word": "nescience", "definition": "n. 无知；不可知论", "example": "The professor tolerated errors but not absolute nescience.", "phonetic": "NEH-shee-uns" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "glib",
+        "meaning": "油嘴滑舌的骗子 / smooth, slippery tongue",
+        "roots": [
+          {
+            "name": "glib",
+            "meaning": "slippery, fluent",
+            "derivedWords": [
+              { "word": "glib", "definition": "adj. 油嘴滑舌的；油腔滑调的", "example": "He gave a glib excuse that fooled no one.", "phonetic": "GLIB" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "egregious",
+        "meaning": "恶名昭彰的骗子 / outstandingly bad",
+        "roots": [
+          {
+            "name": "grex, gregis",
+            "meaning": "herd, flock",
+            "derivedWords": [
+              { "word": "egregious", "definition": "adj. 恶名昭彰的；极坏的；过分的", "example": "It was an egregious error that cost them the match.", "phonetic": "ih-GREE-jus" },
+              { "word": "congregate", "definition": "vi. 聚集 vt. 聚集", "example": "People began to congregate in the town square.", "phonetic": "KAHN-grih-gayt" },
+              { "word": "segregation", "definition": "n. 分离，隔离；种族隔离", "example": "Civil rights leaders fought to end segregation.", "phonetic": "seg-rih-GAY-shun" },
+              { "word": "aggregate", "definition": "v. 聚集；总计 adj. 聚合的", "example": "The scores aggregate to a new record.", "phonetic": "AG-rih-gut" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterTitle": "How To Talk About Various Speech Habits",
+    "order": 7,
+    "mainWords": [
+      {
+        "word": "taciturn",
+        "meaning": "沉默寡言的 / silent, quiet",
+        "roots": [
+          {
+            "name": "taceo",
+            "meaning": "to be silent",
+            "derivedWords": [
+              { "word": "taciturn", "definition": "adj. 沉默寡言的；不太说话的", "example": "He is a taciturn man who rarely speaks first.", "phonetic": "TAS-ih-turn" },
+              { "word": "taciturnity", "definition": "n. 沉默寡言；缄默", "example": "Her taciturnity made her seem unfriendly.", "phonetic": "tas-ih-TUR-nih-tee" },
+              { "word": "tacit", "definition": "adj. 缄默的；不言而喻的；心照不宣的", "example": "They had a tacit agreement not to talk about it.", "phonetic": "TAS-it" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "laconic",
+        "meaning": "简洁的，简明的 / brief, pithy",
+        "roots": [
+          {
+            "name": "loquor",
+            "meaning": "to speak",
+            "derivedWords": [
+              { "word": "loquacious", "definition": "adj. 饶舌的；多嘴的", "example": "The loquacious guide spoke non-stop for hours.", "phonetic": "loh-KWAY-shus" },
+              { "word": "soliloquy", "definition": "n. 独白；自言自语", "example": "Hamlet's famous soliloquy begins with 'To be or not to be'.", "phonetic": "suh-LIL-uh-kwee" },
+              { "word": "soliloquize", "definition": "vi. 自言自语；发独白", "example": "She sat by the window, soliloquizing about her future.", "phonetic": "suh-LIL-uh-kwize" },
+              { "word": "ventriloquist", "definition": "n. 说腹语的人", "example": "The ventriloquist made the dummy sing.", "phonetic": "ven-TRIL-uh-kwist" },
+              { "word": "colloquial", "definition": "adj. 白话的；口语的", "example": "He used colloquial expressions in his speech.", "phonetic": "kuh-LOH-kwee-ul" },
+              { "word": "circumlocution", "definition": "n. 婉转的说法；累赘的陈述", "example": "Write directly and avoid circumlocution.", "phonetic": "sur-kum-loh-KYOO-shun" },
+              { "word": "eloquent", "definition": "adj. 雄辩的；有口才的", "example": "She gave an eloquent plea for justice.", "phonetic": "EL-uh-kwunt" },
+              { "word": "magniloquent", "definition": "adj. 夸张的；说大话的", "example": "The politician used magniloquent words to sound smart.", "phonetic": "mag-NIL-uh-kwunt" }
+            ]
+          },
+          {
+            "name": "Laconia",
+            "meaning": "Spartan region (famous for brief speech)",
+            "derivedWords": [
+              { "word": "laconic", "definition": "adj. 简洁的；简明的", "example": "The commander gave a laconic reply: 'No'.", "phonetic": "luh-KAHN-ik" },
+              { "word": "laconism", "definition": "n. 简洁；简练格言", "example": "His speech was marked by extreme laconism.", "phonetic": "LAK-uh-niz-um" }
+            ]
+          },
+          {
+            "name": "venter, ventris",
+            "meaning": "belly (front)",
+            "derivedWords": [
+              { "word": "ventral", "definition": "adj. 腹部的；腹侧的", "example": "The fish has a bright orange ventral fin.", "phonetic": "VEN-trul" },
+              { "word": "ventricle", "definition": "n. 心室；脑室", "example": "Blood is pumped out of the left ventricle.", "phonetic": "VEN-trih-kul" },
+              { "word": "ventricular", "definition": "adj. 心室的", "example": "Ventricular contraction pumps blood throughout the body.", "phonetic": "ven-TRIK-yuh-ler" }
+            ]
+          },
+          {
+            "name": "dorsum",
+            "meaning": "back",
+            "derivedWords": [
+              { "word": "dorsal", "definition": "adj. 背部的；背侧的", "example": "The shark's dorsal fin cut through the water.", "phonetic": "DOR-sul" },
+              { "word": "endorse", "definition": "vt. 认可；签署；赞同", "example": "The senator decided to endorse the bill.", "phonetic": "en-DORS" }
+            ]
+          },
+          {
+            "name": "auris",
+            "meaning": "ear",
+            "derivedWords": [
+              { "word": "auricle", "definition": "n. 耳廓；外耳；心耳", "example": "The auricle helps collect sound waves.", "phonetic": "AW-rih-kul" }
+            ]
+          },
+          {
+            "name": "magnus",
+            "meaning": "large",
+            "derivedWords": [
+              { "word": "magnanimous", "definition": "adj. 心胸宽广的；大度的", "example": "He was magnanimous in defeat, congratulating his opponent.", "phonetic": "mag-NAN-ih-mus" },
+              { "word": "magnate", "definition": "n. 巨头；权贵", "example": "The media magnate owned several television networks.", "phonetic": "MAG-nayt" },
+              { "word": "magnum opus", "definition": "n. 杰作；代表作", "example": "This novel is considered the writer's magnum opus.", "phonetic": "mag-num OH-pus" },
+              { "word": "magnum", "definition": "n. 大酒瓶 (1.5 liters)", "example": "They ordered a magnum of champagne for the celebration.", "phonetic": "MAG-num" },
+              { "word": "magnificent", "definition": "adj. 壮丽的；伟大的", "example": "The view from the top is magnificent.", "phonetic": "mag-NIF-ih-sunt" },
+              { "word": "magnitude", "definition": "n. 巨大；重大；震级", "example": "We did not realize the magnitude of the problem.", "phonetic": "MAG-nih-tood" }
+            ]
+          },
+          {
+            "name": "grandos",
+            "meaning": "grand",
+            "derivedWords": [
+              { "word": "grandiloquent", "definition": "adj. 夸张的；说大话的", "example": "His grandiloquent style was outdated.", "phonetic": "gran-DIL-uh-kwunt" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "inarticulate",
+        "meaning": "口齿不清的 / speech-impaired, silent",
+        "roots": [
+          {
+            "name": "in-",
+            "meaning": "not",
+            "derivedWords": []
+          },
+          {
+            "name": "articulate",
+            "meaning": "a joint",
+            "derivedWords": [
+              { "word": "inarticulate", "definition": "adj. 口齿不清的；说不出话的", "example": "He was inarticulate with rage.", "phonetic": "in-ar-TIK-yuh-lit" },
+              { "word": "article", "definition": "n. 文章；条款；冠词", "example": "She wrote an article about language study.", "phonetic": "AR-tih-kul" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "garrulous",
+        "meaning": "唠叨的，多嘴的 / chatterbox, talkative",
+        "roots": [
+          {
+            "name": "garrio",
+            "meaning": "to chatter",
+            "derivedWords": [
+              { "word": "garrulous", "definition": "adj. 唠叨的；喋喋不休的", "example": "The garrulous old man told stories all afternoon.", "phonetic": "GAIR-yuh-lus" },
+              { "word": "garrulity", "definition": "n. 饶舌；多言；多嘴", "example": "Her garrulity drove her friends away.", "phonetic": "gair-YOO-lih-tee" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "banal",
+        "meaning": "陈腐的，平庸的 / trite, unoriginal",
+        "roots": [
+          {
+            "name": "banal",
+            "meaning": "commonplace, trite",
+            "derivedWords": [
+              { "word": "banal", "definition": "adj. 陈腐的；平庸的；老一套的", "example": "The movie script was filled with banal dialogue.", "phonetic": "buh-NAL" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "verbose",
+        "meaning": "冗长的，啰嗦的 / wordy, repetitive",
+        "roots": [
+          {
+            "name": "verbum",
+            "meaning": "word",
+            "derivedWords": [
+              { "word": "verbose", "definition": "adj. 冗长的；啰嗦的", "example": "The report was verbose and needed editing.", "phonetic": "vur-BOHS" },
+              { "word": "verbosity", "definition": "n. 冗长；废话；唠叨", "example": "His verbosity made his speech boring.", "phonetic": "vur-BAHS-ih-tee" },
+              { "word": "verbatim", "definition": "adv. 逐字地", "example": "She copied the letter verbatim.", "phonetic": "vur-BAY-tim" },
+              { "word": "verbal", "definition": "adj. 口头的；言语的", "example": "They reached a verbal agreement.", "phonetic": "VUR-bul" },
+              { "word": "verbiage", "definition": "n. 冗词；废话；措辞方式", "example": "The document was full of legal verbiage.", "phonetic": "VUR-bee-ij" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "voluble",
+        "meaning": "健谈的 / talkative, fluent",
+        "roots": [
+          {
+            "name": "volvo, volutus",
+            "meaning": "to roll",
+            "derivedWords": [
+              { "word": "voluble", "definition": "adj. 健谈的；易旋转的", "example": "The voluble hostess welcomed the guests warmly.", "phonetic": "VAHL-yuh-bul" },
+              { "word": "revolve", "definition": "v. 旋转；循环", "example": "The earth revolves around the sun.", "phonetic": "rih-VAHLV" },
+              { "word": "revolution", "definition": "n. 革命；旋转", "example": "The industrial revolution changed society.", "phonetic": "rev-uh-LOO-shun" },
+              { "word": "involve", "definition": "v. 卷入；涉及", "example": "Do not involve me in your argument.", "phonetic": "in-VAHLV" },
+              { "word": "evolve", "definition": "v. 进化；发展", "example": "The business evolved from a small shop.", "phonetic": "ih-VAHLV" },
+              { "word": "volubility", "definition": "n. 流利；健谈", "example": "Her volubility helped her win the debate.", "phonetic": "vahl-yuh-BIL-ih-tee" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "cogent",
+        "meaning": "强有力的，令人信服的 / convincing, compelling",
+        "roots": [
+          {
+            "name": "cogo",
+            "meaning": "to drive together, compel force",
+            "derivedWords": [
+              { "word": "cogent", "definition": "adj. 强有力的；使人信服的", "example": "The lawyer made a cogent argument in court.", "phonetic": "KOH-jent" },
+              { "word": "cogency", "definition": "n. 使人信服；中肯", "example": "The cogency of her reasoning convinced us.", "phonetic": "KOH-jun-see" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "vociferous",
+        "meaning": "大声喊叫的 / loud, noisy, clamorous",
+        "roots": [
+          {
+            "name": "vox, vocis",
+            "meaning": "voice",
+            "derivedWords": []
+          },
+          {
+            "name": "fero",
+            "meaning": "to carry, bear",
+            "derivedWords": [
+              { "word": "vociferous", "definition": "adj. 大声叫的；喊叫的；喧嚷的", "example": "The vociferous crowd protested outside the hall.", "phonetic": "voh-SIF-er-us" },
+              { "word": "somniferous", "definition": "adj. 催眠的；使爱睡的", "example": "The boring lecture had a somniferous effect.", "phonetic": "sahm-NIF-er-us" }
+            ]
+          },
+          {
+            "name": "somnus",
+            "meaning": "sleep",
+            "derivedWords": [
+              { "word": "insomnia", "definition": "n. 失眠症", "example": "Stress caused his chronic insomnia.", "phonetic": "in-SAHM-nee-uh" },
+              { "word": "somnolent", "definition": "adj. 催眠的；想睡的", "example": "The warm room made him feel somnolent.", "phonetic": "SAHM-nuh-lunt" },
+              { "word": "somnambulism", "definition": "n. 梦游病", "example": "Somnambulism is rare but can be dangerous.", "phonetic": "sahm-NAM-byoo-liz-um" }
+            ]
+          },
+          {
+            "name": "ambulo",
+            "meaning": "to walk",
+            "derivedWords": [
+              { "word": "ambulatory", "definition": "adj. 流动的；走动的", "example": "The patient was ambulatory after surgery.", "phonetic": "AM-byoo-luh-tor-ee" },
+              { "word": "perambulator", "definition": "n. 巡视者；婴儿推车", "example": "She pushed the baby in a perambulator.", "phonetic": "puh-RAM-byoo-lay-ter" },
+              { "word": "amble", "definition": "vi. 漫步，闲逛", "example": "They ambled through the park on Sunday.", "phonetic": "AM-bul" },
+              { "word": "preamble", "definition": "n. 序言；前言", "example": "The constitution begins with a brief preamble.", "phonetic": "PREE-am-bul" }
+            ]
+          },
+          {
+            "name": "sopor",
+            "meaning": "sleep",
+            "derivedWords": [
+              { "word": "soporific", "definition": "adj. 催眠的 n. 安眠药", "example": "The warm milk has a soporific effect.", "phonetic": "sahp-uh-RIF-ik" }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
