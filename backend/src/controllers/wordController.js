@@ -3,23 +3,59 @@ const ttsService = require('../services/ttsService');
 const notificationService = require('../services/notificationService');
 const { NotFoundError } = require('../middleware/errors');
 
-
-
-// 1. Get all word groups with word counts
+// 1. Get all chapters, main words, roots, and user progress
 async function getAllGroups(req, res, next) {
   try {
     const userId = req.user.userId;
-    const groups = await prisma.wordGroup.findMany({
+    const chapters = await prisma.chapter.findMany({
       orderBy: {
         order: 'asc'
       },
-      select: {
-        id: true,
-        root: true,
-        meaning: true,
-        order: true,
-        _count: {
-          select: { words: true }
+      include: {
+        mainWords: {
+          orderBy: {
+            order: 'asc'
+          },
+          include: {
+            roots: {
+              include: {
+                derivedWords: true
+              }
+            },
+            progress: {
+              where: { userId },
+              select: {
+                studied: true,
+                quizUnlocked: true,
+                streak: true,
+                reviewBox: true,
+                nextReviewDate: true
+              }
+            }
+          }
+        }
+      }
+    });
+
+    res.status(200).json(chapters);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// 2. Get a single main word by ID with its roots and progress
+async function getGroupById(req, res, next) {
+  try {
+    const { id } = req.params;
+    const userId = req.user.userId;
+
+    const mainWord = await prisma.mainWord.findUnique({
+      where: { id },
+      include: {
+        roots: {
+          include: {
+            derivedWords: true
+          }
         },
         progress: {
           where: { userId },
@@ -34,58 +70,31 @@ async function getAllGroups(req, res, next) {
       }
     });
 
-    res.status(200).json(groups);
-  } catch (err) {
-    next(err);
-  }
-}
-
-// 2. Get a single group by ID with its words
-async function getGroupById(req, res, next) {
-  try {
-    const { id } = req.params;
-    const userId = req.user.userId;
-
-    const group = await prisma.wordGroup.findUnique({
-      where: { id },
-      include: {
-        words: true,
-        progress: {
-          where: { userId },
-          select: {
-            studied: true,
-            quizUnlocked: true,
-            streak: true
-          }
-        }
-      }
-    });
-
-    if (!group) {
-      throw new NotFoundError('Group not found');
+    if (!mainWord) {
+      throw new NotFoundError('Main word not found');
     }
 
-    res.status(200).json(group);
+    res.status(200).json(mainWord);
   } catch (err) {
     next(err);
   }
 }
 
-// 3. Mark a word group as studied for the user
+// 3. Mark a main word as studied
 async function markStudied(req, res, next) {
   try {
-    const { groupId } = req.body;
+    const { mainWordId } = req.body;
     const userId = req.user.userId;
 
-    if (!groupId) {
-      return res.status(400).json({ error: 'groupId is required' });
+    if (!mainWordId) {
+      return res.status(400).json({ error: 'mainWordId is required' });
     }
 
     const progress = await prisma.userProgress.upsert({
       where: {
-        userId_groupId: {
+        userId_mainWordId: {
           userId,
-          groupId
+          mainWordId
         }
       },
       update: {
@@ -94,24 +103,24 @@ async function markStudied(req, res, next) {
       },
       create: {
         userId,
-        groupId,
+        mainWordId,
         studied: true,
         studiedAt: new Date()
       }
     });
 
-    // Fetch the group root name to schedule review notification (non-blocking)
+    // Fetch the main word name to schedule review notification (non-blocking)
     try {
-      const group = await prisma.wordGroup.findUnique({
-        where: { id: groupId },
-        select: { root: true }
+      const mw = await prisma.mainWord.findUnique({
+        where: { id: mainWordId },
+        select: { word: true }
       });
-      if (group) {
-        notificationService.scheduleReviewNotification(userId, groupId, group.root)
+      if (mw) {
+        notificationService.scheduleReviewNotification(userId, mainWordId, mw.word)
           .catch(err => console.error('Failed to schedule review notification:', err));
       }
     } catch (nsErr) {
-      console.error('Error fetching group for notification:', nsErr);
+      console.error('Error fetching main word for notification:', nsErr);
     }
 
     res.status(200).json({
@@ -123,17 +132,17 @@ async function markStudied(req, res, next) {
   }
 }
 
-// 4. Get word audio URL with graceful fallback
+// 4. Get derived word audio URL
 async function getWordAudio(req, res, next) {
   const { wordId } = req.params;
 
   try {
-    const word = await prisma.word.findUnique({
+    const word = await prisma.derivedWord.findUnique({
       where: { id: wordId }
     });
 
     if (!word) {
-      throw new NotFoundError('Word not found');
+      throw new NotFoundError('Derived word not found');
     }
 
     const audioUrl = await ttsService.getOrGenerateAudio(word.id, word.word);
@@ -144,11 +153,11 @@ async function getWordAudio(req, res, next) {
     }
     console.error(`TTS Generation failed for wordId ${wordId}:`, err);
     try {
-      const word = await prisma.word.findUnique({
+      const word = await prisma.derivedWord.findUnique({
         where: { id: wordId }
       });
       if (!word) {
-        throw new NotFoundError('Word not found');
+        throw new NotFoundError('Derived word not found');
       }
       return res.status(200).json({
         audioUrl: null,
@@ -173,7 +182,7 @@ async function getUserProgress(req, res, next) {
   }
 }
 
-// 6. Get all groups that are due for review based on Leitner algorithm
+// 6. Get all main words that are due for review based on Leitner algorithm
 async function getDueGroups(req, res, next) {
   try {
     const userId = req.user.userId;
@@ -191,31 +200,38 @@ async function getDueGroups(req, res, next) {
         reviewBox: 'asc'
       },
       include: {
-        group: {
+        mainWord: {
           select: {
             id: true,
-            root: true,
+            word: true,
             meaning: true,
-            _count: {
-              select: { words: true }
+            roots: {
+              select: {
+                derivedWords: {
+                  select: { id: true }
+                }
+              }
             }
           }
         }
       }
     });
 
-    const mappedGroups = dueProgress.map((p) => ({
-      id: p.group.id,
-      root: p.group.root,
-      meaning: p.group.meaning,
-      _count: p.group._count,
-      progress: [{
-        studied: p.studied,
-        streak: p.streak,
-        reviewBox: p.reviewBox,
-        nextReviewDate: p.nextReviewDate
-      }]
-    }));
+    const mappedGroups = dueProgress.map((p) => {
+      const wordCount = p.mainWord.roots.flatMap(r => r.derivedWords).length;
+      return {
+        id: p.mainWord.id,
+        root: p.mainWord.word,
+        meaning: p.mainWord.meaning,
+        _count: { words: wordCount },
+        progress: [{
+          studied: p.studied,
+          streak: p.streak,
+          reviewBox: p.reviewBox,
+          nextReviewDate: p.nextReviewDate
+        }]
+      };
+    });
 
     res.status(200).json(mappedGroups);
   } catch (err) {

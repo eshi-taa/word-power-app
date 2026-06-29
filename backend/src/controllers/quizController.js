@@ -3,42 +3,65 @@ const quizService = require('../services/quizService');
 const schedulerService = require('../services/schedulerService');
 const { NotFoundError } = require('../middleware/errors');
 
-
-// 1. Get quiz questions for a word group
+// 1. Get quiz questions for a main word
 async function getQuiz(req, res, next) {
   try {
-    const { groupId } = req.params;
+    const { mainWordId } = req.params;
     const userId = req.user.userId;
 
-    // Check user progress to ensure they studied the group first
+    // Check user progress to ensure they studied the main word first
     const progress = await prisma.userProgress.findUnique({
       where: {
-        userId_groupId: {
+        userId_mainWordId: {
           userId,
-          groupId
+          mainWordId
         }
       }
     });
 
     if (!progress || !progress.studied) {
-      return res.status(403).json({ error: 'Study this group first' });
+      return res.status(403).json({ error: 'Study this topic first' });
     }
 
-    // Fetch group with words
-    const group = await prisma.wordGroup.findUnique({
-      where: { id: groupId },
-      include: { words: true }
+    // Fetch main word with roots and derivedWords
+    const mainWord = await prisma.mainWord.findUnique({
+      where: { id: mainWordId },
+      include: {
+        roots: {
+          include: {
+            derivedWords: true
+          }
+        }
+      }
     });
 
-    if (!group) {
-      throw new NotFoundError('Group not found');
+    if (!mainWord) {
+      throw new NotFoundError('Main word not found');
+    }
+
+    // Gather all derived words
+    let words = mainWord.roots.flatMap(r => r.derivedWords);
+
+    // If there are fewer than 3 derived words under this main word's roots, 
+    // fetch random other derived words from the database as fillers
+    if (words.length < 3) {
+      const allDerived = await prisma.derivedWord.findMany({
+        take: 10
+      });
+      const existingIds = new Set(words.map(w => w.id));
+      for (const w of allDerived) {
+        if (!existingIds.has(w.id)) {
+          words.push(w);
+          if (words.length >= 3) break;
+        }
+      }
     }
 
     // Generate quiz questions
-    const questions = quizService.generateQuiz(group.words);
+    const questions = quizService.generateQuiz(words);
 
     res.status(200).json({
-      groupId,
+      mainWordId,
       questions
     });
   } catch (err) {
@@ -46,49 +69,93 @@ async function getQuiz(req, res, next) {
   }
 }
 
-// 2. Submit quiz answers and score it
+// 2. Submit quiz answers and score it with detailed feedback
 async function submitQuiz(req, res, next) {
   try {
-    const { groupId, answers } = req.body;
+    const { mainWordId, answers } = req.body;
     const userId = req.user.userId;
 
-    if (!groupId || !Array.isArray(answers)) {
-      return res.status(400).json({ error: 'groupId and answers (array) are required' });
+    if (!mainWordId || !Array.isArray(answers)) {
+      return res.status(400).json({ error: 'mainWordId and answers (array) are required' });
     }
 
-    // Fetch the group and its words
-    const group = await prisma.wordGroup.findUnique({
-      where: { id: groupId },
-      include: { words: true }
+    const mainWord = await prisma.mainWord.findUnique({
+      where: { id: mainWordId },
+      include: {
+        roots: {
+          include: {
+            derivedWords: true
+          }
+        }
+      }
     });
 
-    if (!group) {
-      throw new NotFoundError('Group not found');
+    if (!mainWord) {
+      throw new NotFoundError('Main word not found');
     }
 
-    // Generate same questions to grade answers against
-    const questions = quizService.generateQuiz(group.words);
+    let words = mainWord.roots.flatMap(r => r.derivedWords);
 
-    // Calculate score
-    const score = quizService.scoreQuiz(questions, answers);
+    // Same filler logic as getQuiz to match questions structure
+    if (words.length < 3) {
+      const allDerived = await prisma.derivedWord.findMany({
+        take: 10
+      });
+      const existingIds = new Set(words.map(w => w.id));
+      for (const w of allDerived) {
+        if (!existingIds.has(w.id)) {
+          words.push(w);
+          if (words.length >= 3) break;
+        }
+      }
+    }
+
+    const questions = quizService.generateQuiz(words);
+
+    // Score quiz and build details explanation logs
+    const details = [];
+    for (let i = 0; i < questions.length; i++) {
+      const question = questions[i];
+      const userAnswer = (answers[i] || '').toString().toLowerCase().trim();
+      const correctAnswer = (question.answer || '').toString().toLowerCase().trim();
+
+      let isCorrect = false;
+      if (userAnswer && correctAnswer) {
+        if (userAnswer.includes(correctAnswer) || correctAnswer.includes(userAnswer)) {
+          isCorrect = true;
+        }
+      }
+
+      details.push({
+        type: question.type,
+        question: question.question,
+        userAnswer: answers[i] || '',
+        correctAnswer: question.answer,
+        isCorrect,
+        explanation: quizService.getExplanation(question, answers[i], isCorrect)
+      });
+    }
+
+    const score = details.filter(d => d.isCorrect).length;
     const passed = score >= 2;
 
-    // Save quiz result to DB
+    // Save quiz result with JSON details
     await prisma.quizResult.create({
       data: {
         userId,
-        groupId,
+        mainWordId,
         score,
-        passed
+        passed,
+        details: details
       }
     });
 
     // Fetch current user progress to determine current box
     const progress = await prisma.userProgress.findUnique({
       where: {
-        userId_groupId: {
+        userId_mainWordId: {
           userId,
-          groupId
+          mainWordId
         }
       }
     });
@@ -101,9 +168,9 @@ async function submitQuiz(req, res, next) {
     // Update userProgress (box + review dates on every attempt; streak/unlock on pass)
     await prisma.userProgress.update({
       where: {
-        userId_groupId: {
+        userId_mainWordId: {
           userId,
-          groupId
+          mainWordId
         }
       },
       data: {
@@ -123,8 +190,31 @@ async function submitQuiz(req, res, next) {
     res.status(200).json({
       score,
       passed,
-      total: 3
+      total: questions.length,
+      details
     });
+  } catch (err) {
+    next(err);
+  }
+}
+
+// 3. Get past attempts history for a main word
+async function getQuizHistory(req, res, next) {
+  try {
+    const { mainWordId } = req.params;
+    const userId = req.user.userId;
+
+    const history = await prisma.quizResult.findMany({
+      where: {
+        userId,
+        mainWordId
+      },
+      orderBy: {
+        takenAt: 'desc'
+      }
+    });
+
+    res.status(200).json(history);
   } catch (err) {
     next(err);
   }
@@ -132,5 +222,6 @@ async function submitQuiz(req, res, next) {
 
 module.exports = {
   getQuiz,
-  submitQuiz
+  submitQuiz,
+  getQuizHistory
 };

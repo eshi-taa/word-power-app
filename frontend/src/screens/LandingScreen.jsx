@@ -105,9 +105,9 @@ const styles = {
     position: 'relative',
   },
   heroTitle: {
-    fontSize: '36px',
+    fontSize: '56px',
     fontWeight: '800',
-    color: 'var(--text-primary)',
+    fontFamily: "'Fraunces', serif",
     lineHeight: '1.2',
     marginBottom: '16px',
     background: 'linear-gradient(135deg, #C9A24B 20%, #EDE8DC 100%)',

@@ -29,47 +29,67 @@ model User {
   quizResults        QuizResult[]
 }
 
-model WordGroup {
-  id      String  @id @default(cuid())
-  root    String  @unique
-  meaning String
-  order   Int     @default(1)
-  words   Word[]
-  progress UserProgress[]
+model Chapter {
+  id        String     @id @default(cuid())
+  title     String     @unique
+  order     Int        @default(1)
+  mainWords MainWord[]
 }
 
-model Word {
-  id         String    @id @default(cuid())
+model MainWord {
+  id          String         @id @default(cuid())
+  word        String         @unique
+  meaning     String
+  order       Int            @default(1)
+  chapterId   String
+  chapter     Chapter        @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  roots       WordRoot[]
+  progress    UserProgress[]
+}
+
+model WordRoot {
+  id           String        @id @default(cuid())
+  name         String
+  meaning      String
+  mainWordId   String
+  mainWord     MainWord      @relation(fields: [mainWordId], references: [id], onDelete: Cascade)
+  derivedWords DerivedWord[]
+}
+
+model DerivedWord {
+  id         String   @id @default(cuid())
   word       String
   definition String
-  example    String
-  phonetic   String
+  example    String?
+  phonetic   String?
   audioUrl   String?
-  groupId    String
-  group      WordGroup @relation(fields: [groupId], references: [id])
+  rootId     String
+  root       WordRoot @relation(fields: [rootId], references: [id], onDelete: Cascade)
 }
 
 model UserProgress {
-  id           String    @id @default(cuid())
-  userId       String
-  groupId      String
-  studied      Boolean   @default(false)
-  studiedAt    DateTime?
-  quizUnlocked Boolean   @default(false)
-  streak       Int       @default(0)
-  reviewBox    Int       @default(1)
-  nextReviewDate DateTime @default(now())
-  user         User      @relation(fields: [userId], references: [id])
-  group        WordGroup @relation(fields: [groupId], references: [id])
-  @@unique([userId, groupId])
+  id             String    @id @default(cuid())
+  userId         String
+  mainWordId     String
+  studied        Boolean   @default(false)
+  studiedAt      DateTime?
+  quizUnlocked   Boolean   @default(false)
+  streak         Int       @default(0)
+  reviewBox      Int       @default(1)
+  nextReviewDate DateTime  @default(now())
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mainWord       MainWord  @relation(fields: [mainWordId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, mainWordId])
 }
 
 model QuizResult {
-  id      String   @id @default(cuid())
-  userId  String
-  groupId String
-  score   Int
-  passed  Boolean
-  takenAt DateTime @default(now())
-  user    User     @relation(fields: [userId], references: [id])
+  id         String   @id @default(cuid())
+  userId     String
+  mainWordId String
+  score      Int
+  passed     Boolean
+  details    Json?
+  takenAt    DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

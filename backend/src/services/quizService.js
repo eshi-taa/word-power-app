@@ -56,7 +56,24 @@ function scoreQuiz(questions, answers) {
   return score;
 }
 
+function getExplanation(question, userAnswer, isCorrect) {
+  const correctWord = question.answer;
+  if (isCorrect) {
+    return `Correct! "${correctWord}" is the right word for this context.`;
+  }
+  const entered = userAnswer ? `"${userAnswer}"` : "nothing";
+  if (question.type === 'fill_blank') {
+    return `You entered ${entered}. The correct word is "${correctWord}". The context sentence was: "${question.question.replace('______', `[${correctWord}]`)}".`;
+  } else if (question.type === 'definition') {
+    return `You entered ${entered}. The correct answer is "${correctWord}".`;
+  } else if (question.type === 'context') {
+    return `You entered ${entered}. It was marked incorrect because your response did not include the target word "${correctWord}".`;
+  }
+  return `The correct answer is "${correctWord}".`;
+}
+
 module.exports = {
   generateQuiz,
-  scoreQuiz
+  scoreQuiz,
+  getExplanation
 };

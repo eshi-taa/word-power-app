@@ -1,87 +1,356 @@
 [
   {
-    "root": "EGO",
-    "meaning": "I or self",
-    "words": [
-      { "word": "egoist", "definition": "a self-centered person who believes in self-interest", "example": "An egoist always asks 'What's in it for me?' before acting.", "phonetic": "EE-goh-ist" },
-      { "word": "egotist", "definition": "an arrogant talker who brags about accomplishments", "example": "The egotist spent the entire dinner talking about his promotions.", "phonetic": "EE-goh-tist" },
-      { "word": "egocentric", "definition": "thinking only of oneself, self-centered", "example": "He is so egocentric that he thinks every conversation is about him.", "phonetic": "ee-goh-SEN-trik" },
-      { "word": "egomaniac", "definition": "someone morbidly obsessed with themselves", "example": "Her extreme vanity made her behave like an egomaniac.", "phonetic": "ee-goh-MAY-nee-ak" }
+    "chapterTitle": "How to Talk About Personality Types",
+    "order": 1,
+    "mainWords": [
+      {
+        "word": "EGO",
+        "meaning": "I or self",
+        "roots": [
+          {
+            "name": "EGO",
+            "meaning": "I or self",
+            "derivedWords": [
+              { "word": "egoist", "definition": "a self-centered person who believes in self-interest", "example": "An egoist always asks 'What's in it for me?' before acting.", "phonetic": "EE-goh-ist" },
+              { "word": "egotist", "definition": "an arrogant talker who brags about accomplishments", "example": "The egotist spent the entire dinner talking about his promotions.", "phonetic": "EE-goh-tist" },
+              { "word": "egocentric", "definition": "thinking only of oneself, self-centered", "example": "He is so egocentric that he thinks every conversation is about him.", "phonetic": "ee-goh-SEN-trik" },
+              { "word": "egomaniac", "definition": "someone morbidly obsessed with themselves", "example": "Her extreme vanity made her behave like an egomaniac.", "phonetic": "ee-goh-MAY-nee-ak" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "ALTER",
+        "meaning": "other",
+        "roots": [
+          {
+            "name": "ALTER",
+            "meaning": "other",
+            "derivedWords": [
+              { "word": "altruist", "definition": "a person unselfishly concerned for the welfare of others", "example": "The altruist spent her weekends volunteering at the shelter.", "phonetic": "AL-troo-ist" },
+              { "word": "alternate", "definition": "take turns or skip one and take the other", "example": "We will alternate driving shifts to avoid getting tired.", "phonetic": "AWL-ter-nit" },
+              { "word": "alteration", "definition": "a change or modification", "example": "She made some alterations to the dress so it fit perfectly.", "phonetic": "awl-tuh-RAY-shun" },
+              { "word": "altercation", "definition": "a heated argument or dispute", "example": "The minor accident led to an altercation between the drivers.", "phonetic": "awl-ter-KAY-shun" },
+              { "word": "alterego", "definition": "another self; a secondary personality", "example": "Bruce Wayne's alterego is Batman.", "phonetic": "awl-ter-EE-goh" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "VERT",
+        "meaning": "turn",
+        "roots": [
+          {
+            "name": "VERT",
+            "meaning": "turn",
+            "derivedWords": [
+              { "word": "introvert", "definition": "a shy, reticent person focused on their own thoughts", "example": "As an introvert, she preferred reading a book over going to a loud party.", "phonetic": "IN-truh-vurt" },
+              { "word": "extrovert", "definition": "an outgoing, socially confident person", "example": "The extrovert made friends with everyone in the room within minutes.", "phonetic": "EKS-truh-vurt" },
+              { "word": "ambivert", "definition": "a person whose personality has features of both", "example": "He is an ambivert who enjoys socializing but also needs quiet time.", "phonetic": "AM-bih-vurt" },
+              { "word": "invert", "definition": "to turn upside down or inside out", "example": "Invert the jar to let the liquid drain completely.", "phonetic": "in-VURT" },
+              { "word": "revert", "definition": "to return to a previous state or habit", "example": "After a week of clean eating, he reverted to his junk food habits.", "phonetic": "rih-VURT" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "MIS",
+        "meaning": "hate",
+        "roots": [
+          {
+            "name": "MIS",
+            "meaning": "hate",
+            "derivedWords": [
+              { "word": "misanthrope", "definition": "a person who dislikes humankind and avoids society", "example": "The hermit was accused of being a misanthrope who hated visitors.", "phonetic": "MIS-un-throhp" },
+              { "word": "misogynist", "definition": "a person who dislikes or is prejudiced against women", "example": "His offensive remarks revealed him to be a misogynist.", "phonetic": "mih-SOJ-uh-nist" },
+              { "word": "misogamist", "definition": "a person who hates marriage", "example": "The lifelong bachelor was a proud misogamist.", "phonetic": "mih-SOG-uh-mist" },
+              { "word": "misanthropic", "definition": "showing hatred or distrust of humankind", "example": "He held a misanthropic view of world events.", "phonetic": "mis-un-THROP-ik" },
+              { "word": "misogyny", "definition": "hatred of or prejudice against women", "example": "The committee worked to eliminate misogyny in the workplace.", "phonetic": "mih-SOJ-uh-nee" }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
-    "root": "ALTER",
-    "meaning": "other",
-    "words": [
-      { "word": "altruist", "definition": "a person unselfishly concerned for the welfare of others", "example": "The altruist spent her weekends volunteering at the shelter.", "phonetic": "AL-troo-ist" },
-      { "word": "alternate", "definition": "take turns or skip one and take the other", "example": "We will alternate driving shifts to avoid getting tired.", "phonetic": "AWL-ter-nit" },
-      { "word": "alteration", "definition": "a change or modification", "example": "She made some alterations to the dress so it fit perfectly.", "phonetic": "awl-tuh-RAY-shun" },
-      { "word": "altercation", "definition": "a heated argument or dispute", "example": "The minor accident led to an altercation between the drivers.", "phonetic": "awl-ter-KAY-shun" },
-      { "word": "alterego", "definition": "another self; a secondary personality", "example": "Bruce Wayne's alterego is Batman.", "phonetic": "awl-ter-EE-goh" }
+    "chapterTitle": "How to Talk About Doctors & Specialists",
+    "order": 2,
+    "mainWords": [
+      {
+        "word": "DERMA",
+        "meaning": "skin",
+        "roots": [
+          {
+            "name": "DERMA",
+            "meaning": "skin",
+            "derivedWords": [
+              { "word": "dermatologist", "definition": "a doctor who specializes in skin diseases", "example": "The dermatologist prescribed a cream for his eczema.", "phonetic": "dur-muh-TOL-uh-jist" },
+              { "word": "dermatitis", "definition": "inflammation of the skin", "example": "Touching the poison ivy caused severe dermatitis.", "phonetic": "dur-muh-TY-tis" },
+              { "word": "epidermis", "definition": "the outer layer of skin", "example": "The sun burned the epidermis of his shoulders.", "phonetic": "ep-ih-DUR-mis" },
+              { "word": "taxidermist", "definition": "one who stuffs and mounts skins of dead animals", "example": "The hunter took the deer head to a taxidermist.", "phonetic": "TAK-sih-dur-mist" },
+              { "word": "pachyderm", "definition": "a thick-skinned animal (like an elephant)", "example": "Elephants and rhinos are classified as pachyderms.", "phonetic": "PAK-ih-durm" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "PSYCHE",
+        "meaning": "mind or soul",
+        "roots": [
+          {
+            "name": "PSYCHE",
+            "meaning": "mind or soul",
+            "derivedWords": [
+              { "word": "psychiatrist", "definition": "a medical practitioner specializing in mental illness", "example": "The psychiatrist diagnosed the patient's chemical imbalance.", "phonetic": "sy-KY-uh-trist" },
+              { "word": "psychologist", "definition": "a specialist in the study of the mind and behavior", "example": "The psychologist conducted research on cognitive development.", "phonetic": "sy-KOL-uh-jist" },
+              { "word": "psychopathic", "definition": "suffering from a chronic mental disorder with abnormal behavior", "example": "The thriller featured a psychopathic villain.", "phonetic": "sy-koh-PATH-ik" },
+              { "word": "psychosomatic", "definition": "physical illness caused or aggravated by mental factors", "example": "His chronic stomach aches were largely psychosomatic.", "phonetic": "sy-koh-soh-MAT-ik" },
+              { "word": "psyche", "definition": "the human soul, mind, or spirit", "example": "Exploring the depths of the human psyche is fascinating.", "phonetic": "SY-kee" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "OPHTHAL",
+        "meaning": "eye",
+        "roots": [
+          {
+            "name": "OPHTHAL",
+            "meaning": "eye",
+            "derivedWords": [
+              { "word": "ophthalmologist", "definition": "a doctor who specializes in eye anatomy and diseases", "example": "She visited the ophthalmologist for regular eye pressure tests.", "phonetic": "off-thal-MOL-uh-jist" },
+              { "word": "ophthalmology", "definition": "the branch of medicine concerned with study and treatment of eye disorders", "example": "He chose to specialize in ophthalmology after medical school.", "phonetic": "off-thal-MOL-uh-jee" },
+              { "word": "ophthalmic", "definition": "relating to the eye and its diseases", "example": "The pharmacist recommended ophthalmic drops for dryness.", "phonetic": "off-THAL-mik" },
+              { "word": "ophthalmoscope", "definition": "an instrument for inspecting the retina and parts of the eye", "example": "The doctor used an ophthalmoscope to peer into the pupil.", "phonetic": "off-THAL-muh-skohp" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "ORTHO",
+        "meaning": "straight or correct",
+        "roots": [
+          {
+            "name": "ORTHO",
+            "meaning": "straight or correct",
+            "derivedWords": [
+              { "word": "orthodontist", "definition": "a dentist who specializes in straightening teeth", "example": "The orthodontist tightened her braces.", "phonetic": "or-thuh-DON-tist" },
+              { "word": "orthopedist", "definition": "a specialist in correcting deformities of bones or muscles", "example": "The orthopedist cast his broken leg.", "phonetic": "or-thuh-PEE-dist" },
+              { "word": "orthodox", "definition": "conforming to what is traditionally accepted as right", "example": "His orthodox methods produced reliable, if boring, results.", "phonetic": "OR-thuh-doks" },
+              { "word": "orthography", "definition": "the conventional spelling system of a language", "example": "English orthography is notoriously difficult due to silent letters.", "phonetic": "or-THOG-ruh-fee" }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
-    "root": "VERT",
-    "meaning": "turn",
-    "words": [
-      { "word": "introvert", "definition": "a shy, reticent person focused on their own thoughts", "example": "As an introvert, she preferred reading a book over going to a loud party.", "phonetic": "IN-truh-vurt" },
-      { "word": "extrovert", "definition": "an outgoing, socially confident person", "example": "The extrovert made friends with everyone in the room within minutes.", "phonetic": "EKS-truh-vurt" },
-      { "word": "ambivert", "definition": "a person whose personality has features of both", "example": "He is an ambivert who enjoys socializing but also needs quiet time.", "phonetic": "AM-bih-vurt" },
-      { "word": "invert", "definition": "to turn upside down or inside out", "example": "Invert the jar to let the liquid drain completely.", "phonetic": "in-VURT" },
-      { "word": "revert", "definition": "to return to a previous state or habit", "example": "After a week of clean eating, he reverted to his junk food habits.", "phonetic": "rih-VURT" }
-    ]
-  },
-  {
-    "root": "MIS",
-    "meaning": "hate",
-    "words": [
-      { "word": "misanthrope", "definition": "a person who dislikes humankind and avoids society", "example": "The hermit was accused of being a misanthrope who hated visitors.", "phonetic": "MIS-un-throhp" },
-      { "word": "misogynist", "definition": "a person who dislikes or is prejudiced against women", "example": "His offensive remarks revealed him to be a misogynist.", "phonetic": "mih-SOJ-uh-nist" },
-      { "word": "misogamist", "definition": "a person who hates marriage", "example": "The lifelong bachelor was a proud misogamist.", "phonetic": "mih-SOG-uh-mist" },
-      { "word": "misanthropic", "definition": "showing hatred or distrust of humankind", "example": "He held a misanthropic view of world events.", "phonetic": "mis-un-THROP-ik" },
-      { "word": "misogyny", "definition": "hatred of or prejudice against women", "example": "The committee worked to eliminate misogyny in the workplace.", "phonetic": "mih-SOJ-uh-nee" }
-    ]
-  },
-  {
-    "root": "DERMA",
-    "meaning": "skin",
-    "words": [
-      { "word": "dermatologist", "definition": "a doctor who specializes in skin diseases", "example": "The dermatologist prescribed a cream for his eczema.", "phonetic": "dur-muh-TOL-uh-jist" },
-      { "word": "dermatitis", "definition": "inflammation of the skin", "example": "Touching the poison ivy caused severe dermatitis.", "phonetic": "dur-muh-TY-tis" },
-      { "word": "epidermis", "definition": "the outer layer of skin", "example": "The sun burned the epidermis of his shoulders.", "phonetic": "ep-ih-DUR-mis" },
-      { "word": "taxidermist", "definition": "one who stuffs and mounts skins of dead animals", "example": "The hunter took the deer head to a taxidermist.", "phonetic": "TAK-sih-dur-mist" },
-      { "word": "pachyderm", "definition": "a thick-skinned animal (like an elephant)", "example": "Elephants and rhinos are classified as pachyderms.", "phonetic": "PAK-ih-durm" }
-    ]
-  },
-  {
-    "root": "PSYCHE",
-    "meaning": "mind or soul",
-    "words": [
-      { "word": "psychiatrist", "definition": "a medical practitioner specializing in mental illness", "example": "The psychiatrist diagnosed the patient's chemical imbalance.", "phonetic": "sy-KY-uh-trist" },
-      { "word": "psychologist", "definition": "a specialist in the study of the mind and behavior", "example": "The psychologist conducted research on cognitive development.", "phonetic": "sy-KOL-uh-jist" },
-      { "word": "psychopathic", "definition": "suffering from a chronic mental disorder with abnormal behavior", "example": "The thriller featured a psychopathic villain.", "phonetic": "sy-koh-PATH-ik" },
-      { "word": "psychosomatic", "definition": "physical illness caused or aggravated by mental factors", "example": "His chronic stomach aches were largely psychosomatic.", "phonetic": "sy-koh-soh-MAT-ik" },
-      { "word": "psyche", "definition": "the human soul, mind, or spirit", "example": "Exploring the depths of the human psyche is fascinating.", "phonetic": "SY-kee" }
-    ]
-  },
-  {
-    "root": "OPHTHAL",
-    "meaning": "eye",
-    "words": [
-      { "word": "ophthalmologist", "definition": "a doctor who specializes in eye anatomy and diseases", "example": "She visited the ophthalmologist for regular eye pressure tests.", "phonetic": "off-thal-MOL-uh-jist" },
-      { "word": "ophthalmology", "definition": "the branch of medicine concerned with study and treatment of eye disorders", "example": "He chose to specialize in ophthalmology after medical school.", "phonetic": "off-thal-MOL-uh-jee" },
-      { "word": "ophthalmic", "definition": "relating to the eye and its diseases", "example": "The pharmacist recommended ophthalmic drops for dryness.", "phonetic": "off-THAL-mik" },
-      { "word": "ophthalmoscope", "definition": "an instrument for inspecting the retina and parts of the eye", "example": "The doctor used an ophthalmoscope to peer into the pupil.", "phonetic": "off-THAL-muh-skohp" }
-    ]
-  },
-  {
-    "root": "ORTHO",
-    "meaning": "straight or correct",
-    "words": [
-      { "word": "orthodontist", "definition": "a dentist who specializes in straightening teeth", "example": "The orthodontist tightened her braces.", "phonetic": "or-thuh-DON-tist" },
-      { "word": "orthopedist", "definition": "a specialist in correcting deformities of bones or muscles", "example": "The orthopedist cast his broken leg.", "phonetic": "or-thuh-PEE-dist" },
-      { "word": "orthodox", "definition": "conforming to what is traditionally accepted as right", "example": "His orthodox methods produced reliable, if boring, results.", "phonetic": "OR-thuh-doks" },
-      { "word": "orthography", "definition": "the conventional spelling system of a language", "example": "English orthography is notoriously difficult due to silent letters.", "phonetic": "or-THOG-ruh-fee" }
+    "chapterTitle": "How To Flatter Your Friends",
+    "order": 3,
+    "mainWords": [
+      {
+        "word": "convivial",
+        "meaning": "欢快友善的 / friendly and lively",
+        "roots": [
+          {
+            "name": "vivo",
+            "meaning": "to live",
+            "derivedWords": [
+              { "word": "vivacious", "definition": "adj. 活泼的；快活的；有生气的", "example": "She was a vivacious hostess who kept the conversation lively all evening.", "phonetic": "vih-VAY-shus" },
+              { "word": "vivid", "definition": "adj. 生动的；鲜明的；鲜艳的", "example": "He gave a vivid description of the sunset over the mountains.", "phonetic": "VIH-vid" },
+              { "word": "revive", "definition": "vi. 复兴；复活；苏醒；恢复精神", "example": "A cup of hot tea revived her spirits after the long journey.", "phonetic": "rih-VYV" },
+              { "word": "vivisection", "definition": "n. 活体解剖", "example": "The ethics of vivisection have been debated in scientific communities.", "phonetic": "vih-vih-SEK-shun" },
+              { "word": "viviparous", "definition": "胎生的", "example": "Most mammals are viviparous creatures.", "phonetic": "vy-VIH-puh-rus" }
+            ]
+          },
+          {
+            "name": "con-",
+            "meaning": "together",
+            "derivedWords": []
+          },
+          {
+            "name": "ovum",
+            "meaning": "egg",
+            "derivedWords": [
+              { "word": "oviparous", "definition": "adj. [动] 卵生的；产卵的", "example": "Birds and reptiles are oviparous species.", "phonetic": "oh-VIH-puh-rus" },
+              { "word": "ovary", "definition": "n. [植] 子房；[解剖] 卵巢", "example": "The ovaries release eggs periodically in female organisms.", "phonetic": "OH-vuh-ree" },
+              { "word": "ovarian", "definition": "adj. [解剖] 卵巢的；子房的", "example": "Ovarian health is essential for reproduction.", "phonetic": "oh-VAIR-ee-un" },
+              { "word": "ovum", "definition": "n. [细胞][组织] 卵；卵子；卵形装饰，复数ova", "example": "The ovum is fertilized by the sperm cell.", "phonetic": "OH-vum" }
+            ]
+          },
+          {
+            "name": "vita",
+            "meaning": "live",
+            "derivedWords": [
+              { "word": "vital", "definition": "adj. 至关重要的；生死攸关的；有活力的", "example": "Water is vital for the survival of all living things.", "phonetic": "VY-tul" },
+              { "word": "revitalize", "definition": "vt. 使…复活；使…复兴；使…恢复生气", "example": "The new park helped revitalize the neighborhood.", "phonetic": "ree-VY-tuh-lyz" },
+              { "word": "devitalize", "definition": "vt. 使衰弱；夺去生命", "example": "A long illness can devitalize even the strongest athletes.", "phonetic": "dee-VY-tuh-lyz" },
+              { "word": "vitamin", "definition": "n. [生化] 维生素；[生化] 维他命", "example": "Fresh fruits are packed with essential vitamins.", "phonetic": "VY-tuh-min" },
+              { "word": "joie de vivre", "definition": "n. （法）生活乐趣", "example": "She had a remarkable joie de vivre that inspired everyone around her.", "phonetic": "zhwah duh VEEVR" },
+              { "word": "bon vivant", "definition": "（法）讲究美食及生活享受的人", "example": "He lived as a bon vivant, dining in top restaurants every week.", "phonetic": "bon vee-VAHN" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "indefatigable",
+        "meaning": "不知疲倦的 / tireless",
+        "roots": [
+          {
+            "name": "in-",
+            "meaning": "negative prefix",
+            "derivedWords": [
+              { "word": "fatigue", "definition": "n. 疲劳，疲乏；杂役，adj. 疲劳的，vt. 使疲劳；使心智衰弱", "example": "Long hours of screen time can cause muscle fatigue.", "phonetic": "fuh-TEEG" },
+              { "word": "ingenuous", "definition": "adj. 天真的；坦白的；正直的；朴实的", "example": "Her ingenuous smile disarmed her skeptics.", "phonetic": "in-JEN-yoo-us" },
+              { "word": "ingenious", "definition": "adj. 有独创性的；机灵的，精制的；心灵手巧的", "example": "The mechanic came up with an ingenious solution to the engine problem.", "phonetic": "in-JEEN-yus" },
+              { "word": "disingenuous", "definition": "adj. 虚伪的；不诚实的；不老实的；狡猾的", "example": "It was disingenuous of him to pretend he didn't know about the rules.", "phonetic": "dis-in-JEN-yoo-us" }
+            ]
+          },
+          {
+            "name": "credo",
+            "meaning": "to believe",
+            "derivedWords": [
+              { "word": "credulous", "definition": "adj. 轻信的；因轻信而产生的", "example": "A credulous customer will believe any advertisement claim.", "phonetic": "KREH-juh-lus" },
+              { "word": "credit", "definition": "n. 信用，信誉；[金融] 贷款；学分；信任；声望", "example": "The store offers interest-free credit to new customers.", "phonetic": "KREH-dit" },
+              { "word": "credible", "definition": "adj. 可靠的，可信的", "example": "We need a credible witness to verify the account.", "phonetic": "KREH-dih-bul" },
+              { "word": "incredible", "definition": "adj. 难以置信的，惊人的", "example": "The mountain view was absolutely incredible.", "phonetic": "in-KREH-dih-bul" },
+              { "word": "credo", "definition": "n. 信条，教义", "example": "His personal credo was to treat everyone with dignity.", "phonetic": "KREE-doh" },
+              { "word": "creed", "definition": "n. 信条，教义", "example": "The company recruits employees regardless of race or creed.", "phonetic": "KREED" },
+              { "word": "credence", "definition": "n. 信任；凭证；祭器台", "example": "You shouldn't give any credence to internet gossip.", "phonetic": "KREE-dunss" },
+              { "word": "credential", "definition": "n. 证书；凭据；国书", "example": "She has all the necessary credentials to lead the research.", "phonetic": "kruh-DEN-shul" },
+              { "word": "gullible", "definition": "adj. 易受骗的；轻信的", "example": "Scammers target gullible internet users.", "phonetic": "GUL-ih-bul" }
+            ]
+          },
+          {
+            "name": "-able",
+            "meaning": "able to be",
+            "derivedWords": []
+          }
+        ]
+      },
+      {
+        "word": "perspicacious",
+        "meaning": "有洞察力的，聪颖的 / keen-minded, wise",
+        "roots": [
+          {
+            "name": "per",
+            "meaning": "through",
+            "derivedWords": [
+              { "word": "perspicuous", "definition": "adj. 明了的；清晰明白的；易懂的", "example": "She wrote a perspicuous and easily digestible policy summary.", "phonetic": "per-SPIH-kyoo-us" }
+            ]
+          },
+          {
+            "name": "specto",
+            "meaning": "to look",
+            "derivedWords": [
+              { "word": "spectacle", "definition": "n. 精彩的表演；奇特的现象；出人意外的情况", "example": "The laser show was an impressive spectacle.", "phonetic": "SPEK-tuh-kul" },
+              { "word": "spectacular", "definition": "adj. 壮观的，惊人的；公开展示的", "example": "The gymnast scored a spectacular victory.", "phonetic": "spek-TAK-yoo-ler" },
+              { "word": "spectator", "definition": "n. 观众；旁观者", "example": "The stadium was packed with excited spectators.", "phonetic": "SPEK-tay-ter" },
+              { "word": "inspect", "definition": "vt. 检查；视察；检阅", "example": "The health department inspected the kitchen conditions.", "phonetic": "in-SPEKT" },
+              { "word": "retrospect", "definition": "n. 回顾，追溯 vi. 回顾，追溯；回想", "example": "In retrospect, we should have planned the route beforehand.", "phonetic": "REH-truh-spekt" },
+              { "word": "prospect", "definition": "n. 前途；预期；景色 vi. 勘探，找矿", "example": "The career prospects in AI look very promising.", "phonetic": "PROS-pekt" },
+              { "word": "introspect", "definition": "vi. 反省；内省", "example": "Quiet evenings are a good time to introspect.", "phonetic": "in-truh-SPEKT" },
+              { "word": "circumspect", "definition": "adj. 细心的，周到的；慎重的", "example": "Officials were circumspect about revealing sensitive deal details.", "phonetic": "SUR-kum-spekt" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "magnanimous",
+        "meaning": "心胸宽广的 / generous and forgiving",
+        "roots": [
+          {
+            "name": "anima / animus",
+            "meaning": "spirit / mind",
+            "derivedWords": [
+              { "word": "magnanimous", "definition": "adj. 宽宏大量的；有雅量的；宽大的", "example": "He was magnanimous in defeat, praising his opponent's play.", "phonetic": "mag-NAN-ih-mus" },
+              { "word": "unanimous", "definition": "adj. 全体一致的；意见一致的；无异议的", "example": "The board reached a unanimous decision on the merger.", "phonetic": "yoo-NAN-ih-mus" },
+              { "word": "equanimity", "definition": "n. 平静；镇定", "example": "She maintained her equanimity even during the crisis.", "phonetic": "ee-kwuh-NIH-mih-tee" },
+              { "word": "animus", "definition": "n. 敌意；意图；基本态度；女性的男性意向", "example": "There was no personal animus between the rival executives.", "phonetic": "AN-ih-mus" },
+              { "word": "animosity", "definition": "n. 憎恶，仇恨，敌意", "example": "We hold no animosity toward our competitors.", "phonetic": "an-ih-MAH-sih-tee" }
+            ]
+          },
+          {
+            "name": "magnus",
+            "meaning": "large",
+            "derivedWords": []
+          }
+        ]
+      },
+      {
+        "word": "versatile",
+        "meaning": "多才多艺的 / adaptable, skilled in many things",
+        "roots": [
+          {
+            "name": "verto, versus",
+            "meaning": "to turn",
+            "derivedWords": [
+              { "word": "versatile", "definition": "adj. 多才多艺的；多功能的", "example": "He is a versatile actor who can play both comedy and tragedy.", "phonetic": "VUR-suh-tul" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "stoical",
+        "meaning": "坚韧的 / calm and unflinching in pain or trouble",
+        "roots": [
+          {
+            "name": "stoa",
+            "meaning": "porch",
+            "derivedWords": [
+              { "word": "stoical", "definition": "adj. 坚忍的；忍耐的", "example": "Her stoical response to the bad news impressed her coworkers.", "phonetic": "STOH-ih-kul" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "intrepid",
+        "meaning": "勇敢的 / fearless, brave",
+        "roots": [
+          {
+            "name": "in-",
+            "meaning": "negative prefix",
+            "derivedWords": []
+          },
+          {
+            "name": "trepido",
+            "meaning": "to tremble",
+            "derivedWords": [
+              { "word": "intrepid", "definition": "adj. 勇敢的；无畏的", "example": "The intrepid explorer set out into the uncharted desert.", "phonetic": "in-TREH-pid" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "scintillating",
+        "meaning": "才华横溢 / sparkling, brilliantly clever",
+        "roots": [
+          {
+            "name": "scintilla",
+            "meaning": "a spark",
+            "derivedWords": [
+              { "word": "scintillating", "definition": "adj. 闪烁的；才华横溢的", "example": "The conversation was scintillating and full of wit.", "phonetic": "SIN-tih-lay-ting" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "urbane",
+        "meaning": "彬彬有礼的 / sophisticated, refined",
+        "roots": [
+          {
+            "name": "urbs",
+            "meaning": "city",
+            "derivedWords": [
+              { "word": "urbane", "definition": "adj. 彬彬有礼的；都市风光的", "example": "He was a smooth, urbane gentleman.", "phonetic": "ur-BAYN" },
+              { "word": "suburban", "definition": "adj. 郊区的，城郊的；土气的；见闻不广的", "example": "They moved from the city center to a quiet suburban street.", "phonetic": "sub-UR-bun" },
+              { "word": "interurban", "definition": "adj. 都市间的", "example": "The interurban railway connected the two neighboring cities.", "phonetic": "in-ter-UR-bun" },
+              { "word": "intraurban", "definition": "市内的", "example": "The intraurban transit system was highly efficient.", "phonetic": "in-truh-UR-bun" },
+              { "word": "exurb", "definition": "n. 远郊地区；城市远郊", "example": "Many commuters live in the exurbs and travel into the city daily.", "phonetic": "EKS-urb" }
+            ]
+          }
+        ]
+      }
     ]
   }
 ]

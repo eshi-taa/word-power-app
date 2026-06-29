@@ -22,17 +22,17 @@ async function seedTestUser() {
     });
     console.log('Test user seeded:', user.email);
 
-    // Get the word groups to associate progress
-    const groups = await prisma.wordGroup.findMany();
-    const credGroup = groups.find(g => g.root === 'CRED');
-    const egoGroup = groups.find(g => g.root === 'EGO');
+    // Get the main words to associate progress
+    const mainWords = await prisma.mainWord.findMany();
+    const egoWord = mainWords.find(w => w.word === 'EGO');
+    const alterWord = mainWords.find(w => w.word === 'ALTER');
 
-    if (credGroup) {
+    if (egoWord) {
       await prisma.userProgress.upsert({
         where: {
-          userId_groupId: {
+          userId_mainWordId: {
             userId: user.id,
-            groupId: credGroup.id
+            mainWordId: egoWord.id
           }
         },
         update: {
@@ -41,20 +41,20 @@ async function seedTestUser() {
         },
         create: {
           userId: user.id,
-          groupId: credGroup.id,
+          mainWordId: egoWord.id,
           studied: true,
           quizUnlocked: true
         }
       });
-      console.log('Seeded progress for CRED group');
+      console.log('Seeded progress for EGO main word');
     }
 
-    if (egoGroup) {
+    if (alterWord) {
       await prisma.userProgress.upsert({
         where: {
-          userId_groupId: {
+          userId_mainWordId: {
             userId: user.id,
-            groupId: egoGroup.id
+            mainWordId: alterWord.id
           }
         },
         update: {
@@ -63,12 +63,12 @@ async function seedTestUser() {
         },
         create: {
           userId: user.id,
-          groupId: egoGroup.id,
+          mainWordId: alterWord.id,
           studied: true,
           quizUnlocked: false
         }
       });
-      console.log('Seeded progress for EGO group');
+      console.log('Seeded progress for ALTER main word');
     }
 
   } catch (err) {

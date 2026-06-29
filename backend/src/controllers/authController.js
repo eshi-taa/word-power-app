@@ -317,29 +317,22 @@ async function login(req, res, next) {
       return res.status(400).json({ error: 'Incorrect password.' });
     }
 
-    // Generate login OTP code
-    const isDev = process.env.NODE_ENV === 'development';
-    const generatedOtp = isDev ? '123456' : Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpires = new Date(Date.now() + 3 * 60 * 1000); 
+    const accessToken = jwt.sign(
+      { userId: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '15m' }
+    );
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        otp: generatedOtp,
-        otpExpires,
-        otpAttempts: 0,
-        otpSentAt: new Date()
-      }
-    });
-
-    console.log(`[AUTH] Login OTP generated for ${validatedEmail}: ${generatedOtp}`);
-
-    // Trigger SMTP email sending
-    await sendOtpEmail(validatedEmail, generatedOtp);
+    const refreshToken = jwt.sign(
+      { userId: user.id },
+      process.env.JWT_REFRESH_SECRET,
+      { expiresIn: '7d' }
+    );
 
     res.status(200).json({
-      message: 'Login OTP sent.',
-      email: validatedEmail
+      accessToken,
+      refreshToken,
+      user
     });
 
   } catch (err) {

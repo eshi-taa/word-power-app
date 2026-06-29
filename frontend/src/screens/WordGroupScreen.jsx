@@ -100,7 +100,7 @@ export default function WordGroupScreen() {
   const handleMarkStudied = async () => {
     setIsStudying(true);
     try {
-      await client.post('/words/groups/studied', { groupId });
+      await client.post('/words/groups/studied', { mainWordId: groupId });
       setShowCompletionModal(true);
     } catch (err) {
       console.error('Error marking studied:', err);
@@ -112,12 +112,11 @@ export default function WordGroupScreen() {
 
   const isAlreadyStudied = group?.progress?.[0]?.studied || false;
 
-  // Pagination calculations
-  const totalWords = group?.words?.length || 0;
+  // Pagination calculations - flat map derivedWords from roots
+  const wordsList = group ? group.roots.flatMap(r => r.derivedWords.map(dw => ({ ...dw, rootName: r.name, rootMeaning: r.meaning }))) : [];
+  const totalWords = wordsList.length;
   const totalPages = Math.ceil(totalWords / WORDS_PER_PAGE);
-  const displayedWords = group?.words 
-    ? group.words.slice((currentPage - 1) * WORDS_PER_PAGE, currentPage * WORDS_PER_PAGE)
-    : [];
+  const displayedWords = wordsList.slice((currentPage - 1) * WORDS_PER_PAGE, currentPage * WORDS_PER_PAGE);
 
   return (
     <div className="animated-fade-in" style={styles.container}>
@@ -156,7 +155,7 @@ export default function WordGroupScreen() {
         {group && (
           <div style={{ textAlign: 'center', marginBottom: '32px', pointerEvents: 'auto' }} className="animate-reveal">
             <h1 className="header-title" style={{ fontSize: '36px', fontStyle: 'italic', display: 'inline-block' }}>
-              {group.root} — {group.meaning}
+              {group.word} — {group.meaning}
             </h1>
           </div>
         )}
@@ -183,14 +182,23 @@ export default function WordGroupScreen() {
                   <div key={word.id} className="glass-panel word-tile-card">
                     <div style={styles.cardLeft}>
                       <div style={styles.wordHeader}>
-                        <h3 style={styles.wordText}>{word.word}</h3>
-                        <span style={styles.phoneticText}>[{word.phonetic}]</span>
+                        <h3 style={styles.wordText}>
+                          {word.word}
+                          {word.rootName && (
+                            <span className="root-name-badge" style={{ verticalAlign: 'middle', marginLeft: '8px', fontSize: '10px' }} title={`Root: ${word.rootName} (${word.rootMeaning || ''})`}>
+                              {word.rootName}
+                            </span>
+                          )}
+                        </h3>
+                        <span style={styles.phoneticText}>[{word.phonetic || ''}]</span>
                       </div>
                       <p style={styles.definitionText}>{word.definition}</p>
-                      <div style={styles.exampleContainer}>
-                        <span style={styles.exampleLabel}>Example:</span>
-                        <p style={styles.exampleText}>"{word.example}"</p>
-                      </div>
+                      {word.example && (
+                        <div style={styles.exampleContainer}>
+                          <span style={styles.exampleLabel}>Example:</span>
+                          <p style={styles.exampleText}>"{word.example}"</p>
+                        </div>
+                      )}
                     </div>
                     {/* Speaker trigger button docked at the bottom right */}
                     <div style={styles.cardBottomRow}>
@@ -268,7 +276,7 @@ export default function WordGroupScreen() {
           <div className="glass-panel modal-card-premium">
             <h2 className="modal-title">Rite of Study Complete</h2>
             <p className="modal-text">
-              You have finished studying the <span style={{ color: 'var(--color-blue)', fontWeight: 'bold' }}>"{group?.root || ''}"</span> root group!
+              You have finished studying the <span style={{ color: 'var(--color-blue)', fontWeight: 'bold' }}>"{group?.word || ''}"</span> etymology!
             </p>
             <p className="modal-subtext">
               Would you like to sit the examination (take the quiz) now, or return to your study desk?

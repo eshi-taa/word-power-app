@@ -186,14 +186,7 @@ export default function LoginScreen() {
       setError(null);
       setSuccessMessage(null);
       await login(email, password);
-      
-      setOtpValues(['', '', '', '', '', '']);
-      setTimer(180);
-      setTimerActive(true);
-      setResendCooldown(30);
-      setSuccessMessage('A 6-digit login verification code was sent to your email.');
-      // Keep mode as login, but we'll show OTP fields!
-      // In login mode, if timerActive is true, we render OTP inputs.
+      navigate('/', { replace: true });
     } catch (err) {
       // Handled by store setError
     }

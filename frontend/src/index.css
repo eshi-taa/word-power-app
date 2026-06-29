@@ -661,3 +661,111 @@ footer {
   padding: 12px;
   font-size: 14px;
 }
+
+/* Chapter Accordion and Etymology Layouts */
+.chapter-accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-muted);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chapter-accordion-header:hover {
+  background: rgba(201, 162, 75, 0.04);
+  border-color: rgba(201, 162, 75, 0.3);
+}
+
+.chapter-accordion-header.active {
+  border-color: rgba(201, 162, 75, 0.4);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.chapter-title-text {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--text-primary);
+}
+
+.chapter-meta-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.chapter-content-body {
+  padding: 8px 4px 24px 4px;
+  animation: fadeIn 0.4s ease;
+}
+
+.etymology-roots-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.root-item-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.root-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.root-name-badge {
+  font-family: 'Fraunces', Georgia, serif;
+  background: rgba(201, 162, 75, 0.15);
+  color: var(--color-blue);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.root-meaning-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.derived-words-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.derived-word-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.derived-word-pill:hover {
+  background: rgba(201, 162, 75, 0.1);
+  border-color: rgba(201, 162, 75, 0.3);
+  color: var(--color-blue);
+}

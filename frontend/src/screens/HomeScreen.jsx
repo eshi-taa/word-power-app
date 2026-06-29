@@ -6,10 +6,11 @@ import useAuthStore from '../store/authStore';
 import PerspectiveGrid from '../components/PerspectiveGrid';
 
 export default function HomeScreen() {
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState([]); // This will store our chapters list
   const [dueGroups, setDueGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expandedChapterId, setExpandedChapterId] = useState(null);
   
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ export default function HomeScreen() {
       ]);
       setGroups(groupsRes.data);
       setDueGroups(dueRes.data);
+      if (groupsRes.data && groupsRes.data.length > 0 && !expandedChapterId) {
+        setExpandedChapterId(groupsRes.data[0].id);
+      }
     } catch (err) {
       console.error('Error fetching dashboard data:', err);
       setError(handleApiError(err));
@@ -36,13 +40,25 @@ export default function HomeScreen() {
     fetchDashboardData();
   }, []);
 
-  // Calculate total streak
-  const totalStreak = groups.reduce((acc, g) => acc + (g.progress?.[0]?.streak || 0), 0);
+  // Calculate total streak by summing streaks of all mainWords
+  const totalStreak = groups.reduce((acc, chapter) => {
+    const chapStreak = chapter.mainWords?.reduce((sum, mw) => sum + (mw.progress?.[0]?.streak || 0), 0) || 0;
+    return acc + chapStreak;
+  }, 0);
 
-  // Find the next group to study (first unlocked, incomplete group)
-  const nextGroupToStudy = groups.find((g, idx) => {
-    const isUnlocked = idx === 0 || (groups[idx - 1]?.progress?.[0]?.quizUnlocked || false);
-    const isStudied = g.progress?.[0]?.studied || false;
+  // Flat list of all main words in order across all chapters to compute locks sequentially
+  const allMainWords = groups.flatMap(c => c.mainWords || []);
+
+  const isWordUnlocked = (mwId) => {
+    const idx = allMainWords.findIndex(w => w.id === mwId);
+    if (idx === -1) return false;
+    return idx === 0 || (allMainWords[idx - 1]?.progress?.[0]?.quizUnlocked || false);
+  };
+
+  // Find the next group to study (first unlocked, incomplete MainWord)
+  const nextGroupToStudy = allMainWords.find((mw, idx) => {
+    const isUnlocked = idx === 0 || (allMainWords[idx - 1]?.progress?.[0]?.quizUnlocked || false);
+    const isStudied = mw.progress?.[0]?.studied || false;
     return isUnlocked && !isStudied;
   });
 
@@ -53,6 +69,10 @@ export default function HomeScreen() {
   const handleLogout = () => {
     logout();
     navigate('/login', { replace: true });
+  };
+
+  const toggleChapter = (chapterId) => {
+    setExpandedChapterId(expandedChapterId === chapterId ? null : chapterId);
   };
 
   return (
@@ -66,6 +86,7 @@ export default function HomeScreen() {
         <header className="header-bar" style={{ pointerEvents: 'auto' }}>
           <h1 className="header-title" style={{ cursor: 'pointer' }} onClick={fetchDashboardData}>Word Power</h1>
           <div style={styles.headerRight}>
+            <Link to="/profile" className="btn btn-secondary" style={{ textDecoration: 'none', marginRight: '8px' }}>Profile</Link>
             <button className="btn btn-secondary" style={styles.logoutBtn} onClick={handleLogout}>
               Logout
             </button>
@@ -78,7 +99,6 @@ export default function HomeScreen() {
             <span style={{ fontSize: '14px', fontWeight: '700', color: 'var(--text-primary)' }}>Weekly Routine:</span>
             <div className="streak-squares-grid">
               {[1, 2, 3, 4, 5, 6, 7].map((day, i) => {
-                // Mock activity mapping: activate squares based on current streak
                 const isActive = i < Math.min(7, totalStreak);
                 return (
                   <div 
@@ -124,7 +144,7 @@ export default function HomeScreen() {
                       🔥 Reviews Pending
                     </h3>
                     <p style={styles.meaningText}>
-                      You have {dueGroups.length} group{dueGroups.length > 1 ? 's' : ''} scheduled for Leitner review.
+                      You have {dueGroups.length} topic{dueGroups.length > 1 ? 's' : ''} scheduled for Leitner review.
                     </p>
                   </div>
                   <button className="btn btn-amber" style={styles.reviewBtn}>
@@ -142,7 +162,7 @@ export default function HomeScreen() {
                       📚 Continue Learning
                     </h3>
                     <p style={styles.meaningText}>
-                      Next up: study the root group <strong>{nextGroupToStudy.root}</strong> (means <em>"{nextGroupToStudy.meaning}"</em>).
+                      Next up: study the etymology for <strong>{nextGroupToStudy.word}</strong> (means <em>"{nextGroupToStudy.meaning}"</em>).
                     </p>
                   </div>
                   <button className="btn btn-primary" style={styles.reviewBtn}>
@@ -151,82 +171,141 @@ export default function HomeScreen() {
                 </div>
               ) : null}
 
-              {/* 3. Entire Learning Path with frosted locks */}
+              {/* 3. Book Chapters Accordion learning path */}
               <div style={{ pointerEvents: 'auto' }}>
                 <h3 className="section-title">Vocabulary Path</h3>
-                <div className="groups-grid">
-                  {groups.map((group, index) => {
-                    const isStudied = group.progress?.[0]?.studied || false;
-                    const wordCount = group._count?.words || 0;
-                    const reviewBox = group.progress?.[0]?.reviewBox || 1;
-                    
-                    // Sequential unlocking logic
-                    const isUnlocked = index === 0 || (groups[index - 1]?.progress?.[0]?.quizUnlocked || false);
-                    
-                    return (
-                      <div
-                        key={group.id}
-                        className={`glass-panel word-tile-card animate-reveal ${!isUnlocked ? 'locked-card-veiled' : isStudied ? 'completed' : 'unlocked-incomplete'}`}
-                        style={{
-                          ...styles.card,
-                          animationDelay: `${index * 0.05}s`
-                        }}
-                        onClick={() => isUnlocked && handleGroupClick(group.id)}
+                
+                {groups.map((chapter) => {
+                  const isChapterExpanded = expandedChapterId === chapter.id;
+                  const totalWordsCount = chapter.mainWords?.length || 0;
+                  const studiedWordsCount = chapter.mainWords?.filter(w => w.progress?.[0]?.studied).length || 0;
+
+                  return (
+                    <div key={chapter.id} style={{ marginBottom: '16px' }}>
+                      {/* Chapter Header */}
+                      <div 
+                        className={`chapter-accordion-header ${isChapterExpanded ? 'active' : ''}`}
+                        onClick={() => toggleChapter(chapter.id)}
                       >
-                        {/* Thin outline lock badge in top-right */}
-                        {!isUnlocked && (
-                          <div style={styles.lockBadge} title="Locked">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#80776A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
+                        <div>
+                          <div className="chapter-title-text">{chapter.title}</div>
+                          <div className="chapter-meta-text">
+                            Chapter Progress: {studiedWordsCount} / {totalWordsCount} studied
                           </div>
-                        )}
-
-                        <div style={{ ...styles.cardLeft, opacity: isUnlocked ? 1 : 0.4 }}>
-                          <h2 style={styles.rootText}>
-                            {group.root}
-                          </h2>
-                          <p style={styles.meaningText}>
-                            {isUnlocked ? (
-                              <>means <em>"{group.meaning}"</em></>
-                            ) : (
-                              <span style={styles.lockedSubtitle}>
-                                Unlocks after {groups[index - 1]?.root}
-                              </span>
-                            )}
-                          </p>
-                          
-                          {/* Per-card Progress bar */}
-                          {isUnlocked && (
-                            <div className="card-progress-bar-bg">
-                              <div 
-                                className={`card-progress-bar-fill ${isStudied ? 'completed' : ''}`}
-                                style={{ width: `${isStudied ? 100 : 0}%` }}
-                              />
-                            </div>
-                          )}
                         </div>
-
-                        <div style={{ ...styles.cardRight, opacity: isUnlocked ? 1 : 0.4 }}>
-                          <span style={styles.wordCount}>{wordCount} words</span>
-                          
-                          {/* Leitner Box Dots progress track */}
-                          {isUnlocked && isStudied && (
-                            <div className="leitner-dots-container" title={`Leitner Box ${reviewBox}`}>
-                              {[1, 2, 3, 4, 5].map((boxNum) => (
-                                <div 
-                                  key={boxNum} 
-                                  className={`leitner-dot ${boxNum <= reviewBox ? (reviewBox === 5 ? 'completed' : 'filled') : ''}`}
-                                />
-                              ))}
-                            </div>
-                          )}
+                        <div style={{ color: 'var(--color-blue)', transition: 'transform 0.2s', transform: isChapterExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}>
+                          ▶
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
+
+                      {/* Chapter Content Main Words Grid */}
+                      {isChapterExpanded && (
+                        <div className="chapter-content-body">
+                          <div className="groups-grid">
+                            {chapter.mainWords?.map((mw, index) => {
+                              const isStudied = mw.progress?.[0]?.studied || false;
+                              const reviewBox = mw.progress?.[0]?.reviewBox || 1;
+                              const unlocked = isWordUnlocked(mw.id);
+                              const derivedWordCount = mw.roots?.reduce((acc, r) => acc + (r.derivedWords?.length || 0), 0) || 0;
+
+                              return (
+                                <div
+                                  key={mw.id}
+                                  className={`glass-panel word-tile-card animate-reveal ${!unlocked ? 'locked-card-veiled' : isStudied ? 'completed' : 'unlocked-incomplete'}`}
+                                  style={{
+                                    ...styles.card,
+                                    animationDelay: `${index * 0.05}s`
+                                  }}
+                                  onClick={() => unlocked && handleGroupClick(mw.id)}
+                                >
+                                  {/* Lock outline badge */}
+                                  {!unlocked && (
+                                    <div style={styles.lockBadge} title="Locked">
+                                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#80776A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                      </svg>
+                                    </div>
+                                  )}
+
+                                  <div style={{ ...styles.cardLeft, opacity: unlocked ? 1 : 0.4 }}>
+                                    <h2 style={styles.rootText}>
+                                      {mw.word}
+                                    </h2>
+                                    <p style={styles.meaningText}>
+                                      {unlocked ? (
+                                        <>means <em>"{mw.meaning}"</em></>
+                                      ) : (
+                                        <span style={styles.lockedSubtitle}>
+                                          Locked
+                                        </span>
+                                      )}
+                                    </p>
+
+                                    {/* Nested Roots and Derived Words list */}
+                                    {unlocked && mw.roots && mw.roots.length > 0 && (
+                                      <div className="etymology-roots-section" onClick={(e) => e.stopPropagation()}>
+                                        {mw.roots.map(root => (
+                                          <div key={root.id} className="root-item-row">
+                                            <div className="root-item-meta">
+                                              <span className="root-name-badge">{root.name}</span>
+                                              {root.meaning && (
+                                                <span className="root-meaning-text">({root.meaning})</span>
+                                              )}
+                                            </div>
+                                            {root.derivedWords && root.derivedWords.length > 0 && (
+                                              <div className="derived-words-pills">
+                                                {root.derivedWords.map(dw => (
+                                                  <span 
+                                                    key={dw.id} 
+                                                    className="derived-word-pill"
+                                                    title={dw.definition}
+                                                  >
+                                                    {dw.word}
+                                                  </span>
+                                                ))}
+                                              </div>
+                                            )}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+
+                                    {/* Main Word studied progress bar */}
+                                    {unlocked && (
+                                      <div className="card-progress-bar-bg" style={{ marginTop: '16px' }}>
+                                        <div 
+                                          className={`card-progress-bar-fill ${isStudied ? 'completed' : ''}`}
+                                          style={{ width: `${isStudied ? 100 : 0}%` }}
+                                        />
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  <div style={{ ...styles.cardRight, opacity: unlocked ? 1 : 0.4 }}>
+                                    <span style={styles.wordCount}>{derivedWordCount} sub words</span>
+                                    
+                                    {/* Leitner Box indicators */}
+                                    {unlocked && isStudied && (
+                                      <div className="leitner-dots-container" title={`Leitner Box ${reviewBox}`} style={{ marginTop: 'auto' }}>
+                                        {[1, 2, 3, 4, 5].map((boxNum) => (
+                                          <div 
+                                            key={boxNum} 
+                                            className={`leitner-dot ${boxNum <= reviewBox ? (reviewBox === 5 ? 'completed' : 'filled') : ''}`}
+                                          />
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -259,16 +338,16 @@ const styles = {
   card: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'stretch',
     cursor: 'pointer',
     textAlign: 'left',
     position: 'relative',
     height: '100%',
-    minHeight: '110px',
+    minHeight: '130px',
     padding: '24px',
   },
   rootText: {
-    fontSize: '28px', /* Enlarged slightly */
+    fontSize: '28px',
     fontWeight: '900',
     color: 'var(--text-primary)',
     fontFamily: "'Fraunces', 'Libre Baskerville', Georgia, serif",
@@ -277,6 +356,7 @@ const styles = {
     fontSize: '14px',
     color: 'var(--text-secondary)',
     marginTop: '4px',
+    lineHeight: '1.4',
   },
   lockedSubtitle: {
     textTransform: 'uppercase',
@@ -294,13 +374,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    gap: '8px',
-    marginLeft: '12px',
+    justifyContent: 'space-between',
+    marginLeft: '16px',
+    minWidth: '90px',
   },
   wordCount: {
-    fontSize: '14px',
+    fontSize: '13px',
     fontWeight: '600',
     color: 'var(--color-blue)',
+    textAlign: 'right',
   },
   loaderContainer: {
     display: 'flex',
@@ -332,12 +414,12 @@ const styles = {
     fontWeight: '600',
   },
   dueBanner: {
-    padding: '28px', /* Opened up padding */
+    padding: '28px',
     borderLeft: '4px solid var(--color-amber)',
     width: '100%',
   },
   continueBanner: {
-    padding: '28px', /* Opened up padding */
+    padding: '28px',
     borderLeft: '4px solid var(--color-blue)',
     width: '100%',
   },
@@ -348,8 +430,8 @@ const styles = {
   },
   lockBadge: {
     position: 'absolute',
-    top: '16px',
-    right: '16px',
+    top: '20px',
+    right: '20px',
     zIndex: 11,
   },
 };

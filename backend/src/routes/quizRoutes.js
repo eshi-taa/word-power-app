@@ -6,7 +6,8 @@ const authenticate = require('../middleware/authenticate');
 // All routes are protected by the authenticate middleware
 router.use(authenticate);
 
-router.get('/:groupId', quizController.getQuiz);
+router.get('/:mainWordId', quizController.getQuiz);
 router.post('/submit', quizController.submitQuiz);
+router.get('/:mainWordId/history', quizController.getQuizHistory);
 
 module.exports = router;

@@ -20,27 +20,29 @@ export default function ProfileScreen() {
     setError(null);
     try {
       const response = await client.get('/words/groups');
-      const groups = response.data;
+      const chapters = response.data;
 
       let streak = 0;
       let wordsMastered = 0;
       let groupsStudied = 0;
       let totalWordsPossible = 0;
 
-      groups.forEach((g) => {
-        const prog = g.progress?.[0];
-        const count = g._count?.words || 0;
-        totalWordsPossible += count;
+      chapters.forEach((chapter) => {
+        chapter.mainWords?.forEach((mw) => {
+          const prog = mw.progress?.[0];
+          const count = mw.roots?.reduce((acc, r) => acc + (r.derivedWords?.length || 0), 0) || 0;
+          totalWordsPossible += count;
 
-        if (prog) {
-          streak = Math.max(streak, prog.streak || 0);
-          if (prog.studied) {
-            groupsStudied += 1;
+          if (prog) {
+            streak = Math.max(streak, prog.streak || 0);
+            if (prog.studied) {
+              groupsStudied += 1;
+            }
+            if (prog.quizUnlocked) {
+              wordsMastered += count;
+            }
           }
-          if (prog.quizUnlocked) {
-            wordsMastered += count;
-          }
-        }
+        });
       });
 
       setStats({

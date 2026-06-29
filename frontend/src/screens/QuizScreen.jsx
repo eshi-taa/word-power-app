@@ -5,7 +5,7 @@ import { handleApiError } from '../api/handleError';
 import PerspectiveGrid from '../components/PerspectiveGrid';
 
 export default function QuizScreen() {
-  const { groupId } = useParams();
+  const { groupId } = useParams(); // Matches mainWordId from the route
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,9 +16,11 @@ export default function QuizScreen() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
-  // Results State
+  // Results & History State
   const [quizFinished, setQuizFinished] = useState(false);
-  const [result, setResult] = useState(null); // { score, passed, total }
+  const [result, setResult] = useState(null); // { score, passed, total, details: [{ type, question, userAnswer, correctAnswer, isCorrect, explanation }] }
+  const [history, setHistory] = useState([]);
+  const [expandedAttemptId, setExpandedAttemptId] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
 
   const fetchQuizQuestions = async () => {
@@ -33,11 +35,21 @@ export default function QuizScreen() {
     try {
       const response = await client.get(`/quiz/${groupId}`);
       setQuestions(response.data.questions);
+      await fetchHistory();
     } catch (err) {
       console.error('Error loading quiz:', err);
       setError(handleApiError(err));
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchHistory = async () => {
+    try {
+      const response = await client.get(`/quiz/${groupId}/history`);
+      setHistory(response.data);
+    } catch (err) {
+      console.error('Failed to load quiz history:', err);
     }
   };
 
@@ -68,11 +80,12 @@ export default function QuizScreen() {
     setIsSubmitting(true);
     try {
       const response = await client.post('/quiz/submit', {
-        groupId,
+        mainWordId: groupId,
         answers: finalAnswers
       });
       setResult(response.data);
       setQuizFinished(true);
+      await fetchHistory();
     } catch (err) {
       console.error('Error submitting quiz answers:', err);
       setAlertMessage(handleApiError(err));
@@ -81,8 +94,23 @@ export default function QuizScreen() {
     }
   };
 
+  const toggleAttemptExpand = (attemptId) => {
+    setExpandedAttemptId(expandedAttemptId === attemptId ? null : attemptId);
+  };
+
   const currentQuestion = questions[currentIndex];
   const progressPercent = questions.length > 0 ? ((currentIndex + 1) / questions.length) * 100 : 0;
+
+  // Formatting timestamp helper
+  const formatDate = (isoString) => {
+    const d = new Date(isoString);
+    return d.toLocaleDateString(undefined, { 
+      month: 'short', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    });
+  };
 
   // 1. Loading State
   if (isLoading) {
@@ -112,41 +140,161 @@ export default function QuizScreen() {
     );
   }
 
-  // 3. Quiz Results Screen
+  // 3. Quiz Results Screen with detailed feedback and history timeline
   if (quizFinished && result) {
     return (
-      <div className="animated-fade-in" style={styles.centerContainer}>
+      <div className="animated-fade-in" style={styles.scrollContainer}>
         <PerspectiveGrid />
-        <div className="glass-panel" style={{ ...styles.resultsCard, position: 'relative', zIndex: 2 }}>
-          {result.passed ? (
-            <div style={styles.resultDetails}>
-              <div style={styles.emoji}>🏆🎉</div>
-              <h2 style={styles.resultHeader}>Congratulations!</h2>
-              <p style={styles.resultSub}>You passed the quiz and unlocked the next root group!</p>
-              <h1 style={styles.scoreText}>{result.score} / {result.total}</h1>
-              <button 
-                className="btn btn-success"
-                style={styles.actionBtn}
-                onClick={() => navigate('/dashboard')}
-              >
-                Back to Home
-              </button>
-            </div>
-          ) : (
-            <div style={styles.resultDetails}>
-              <div style={styles.emoji}>📚💪</div>
-              <h2 style={styles.resultHeader}>Keep Practicing!</h2>
-              <p style={styles.resultSub}>You need at least 2 correct answers to pass. Don't worry, you can try again!</p>
-              <h1 style={styles.scoreText} className="text-amber">{result.score} / {result.total}</h1>
-              <button 
-                className="btn btn-amber"
-                style={styles.actionBtn}
-                onClick={fetchQuizQuestions}
-              >
-                Try Again
-              </button>
+        
+        <div style={styles.wideContent}>
+          {/* Hero Card */}
+          <div className="glass-panel" style={{ ...styles.resultsCard, margin: '0 auto 32px auto', position: 'relative', zIndex: 2 }}>
+            {result.passed ? (
+              <div style={styles.resultDetails}>
+                <div style={styles.emoji}>🏆🎉</div>
+                <h2 style={styles.resultHeader}>Congratulations!</h2>
+                <p style={styles.resultSub}>You passed the quiz and unlocked the next etymology topic!</p>
+                <h1 style={styles.scoreText}>{result.score} / {result.total}</h1>
+                <button 
+                  className="btn btn-success"
+                  style={styles.actionBtn}
+                  onClick={() => navigate('/dashboard')}
+                >
+                  Back to Home
+                </button>
+              </div>
+            ) : (
+              <div style={styles.resultDetails}>
+                <div style={styles.emoji}>📚💪</div>
+                <h2 style={styles.resultHeader}>Keep Practicing!</h2>
+                <p style={styles.resultSub}>You need at least 2 correct answers to pass. Don't worry, you can try again!</p>
+                <h1 style={styles.scoreText} className="text-amber">{result.score} / {result.total}</h1>
+                <button 
+                  className="btn btn-amber"
+                  style={styles.actionBtn}
+                  onClick={fetchQuizQuestions}
+                >
+                  Try Again
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Graded Answers Detailed Feedback */}
+          {result.details && result.details.length > 0 && (
+            <div className="glass-panel" style={{ marginBottom: '32px', textAlign: 'left', position: 'relative', zIndex: 2 }}>
+              <h3 className="section-title" style={{ marginTop: 0, marginBottom: '20px' }}>Review Answers</h3>
+              <div style={styles.feedbackList}>
+                {result.details.map((detail, index) => (
+                  <div key={index} style={styles.feedbackItem}>
+                    <div style={styles.feedbackHeaderRow}>
+                      <span style={{ fontWeight: '700', fontSize: '15px' }}>
+                        Question {index + 1}: {detail.type === 'fill_blank' ? 'Fill in the blank' : detail.type === 'definition' ? 'Definition match' : 'Context usage'}
+                      </span>
+                      <span style={{ 
+                        color: detail.isCorrect ? 'var(--color-green)' : 'var(--color-red)', 
+                        fontWeight: '800',
+                        fontSize: '13px'
+                      }}>
+                        {detail.isCorrect ? '✓ CORRECT' : '✗ INCORRECT'}
+                      </span>
+                    </div>
+                    <p style={styles.feedbackQuestion}>{detail.question}</p>
+                    <div style={styles.feedbackAnswersContainer}>
+                      <div>
+                        <span style={styles.feedbackLabel}>Your Answer: </span>
+                        <span style={{ 
+                          color: detail.isCorrect ? 'var(--color-green)' : 'var(--color-red)',
+                          fontWeight: '700'
+                        }}>
+                          {detail.userAnswer || '(blank)'}
+                        </span>
+                      </div>
+                      {!detail.isCorrect && (
+                        <div>
+                          <span style={styles.feedbackLabel}>Correct Answer: </span>
+                          <span style={{ color: 'var(--text-primary)', fontWeight: '700' }}>
+                            {detail.correctAnswer}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div style={styles.feedbackExplanation}>
+                      💡 <strong>Explanation:</strong> {detail.explanation}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
+
+          {/* Past Attempts History timeline */}
+          <div className="glass-panel" style={{ textAlign: 'left', position: 'relative', zIndex: 2, marginBottom: '40px' }}>
+            <h3 className="section-title" style={{ marginTop: 0, marginBottom: '20px' }}>Past Attempts</h3>
+            {history.length <= 1 ? (
+              <p style={{ color: 'var(--text-muted)', fontSize: '14px', fontStyle: 'italic' }}>No previous quiz history found.</p>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {history.map((attempt) => {
+                  const isExpanded = expandedAttemptId === attempt.id;
+                  const attemptDetails = attempt.details;
+
+                  return (
+                    <div key={attempt.id} style={styles.historyRow}>
+                      <div 
+                        style={styles.historyHeader} 
+                        onClick={() => toggleAttemptExpand(attempt.id)}
+                      >
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                          <span style={{ fontSize: '14px', fontWeight: '700' }}>
+                            Attempt on {formatDate(attempt.takenAt)}
+                          </span>
+                          <span style={{ fontSize: '12px', color: attempt.passed ? 'var(--color-green)' : 'var(--color-amber)', fontWeight: '700' }}>
+                            {attempt.passed ? 'PASSED' : 'FAILED'}
+                          </span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <span style={{ fontWeight: '800', fontSize: '18px', color: 'var(--color-blue)' }}>
+                            {attempt.score}/3
+                          </span>
+                          <span style={{ transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.2s', fontSize: '12px' }}>
+                            ▶
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Expandable Graded Questions details */}
+                      {isExpanded && attemptDetails && Array.isArray(attemptDetails) && (
+                        <div style={styles.historyExpandedBody}>
+                          {attemptDetails.map((det, dIdx) => (
+                            <div key={dIdx} style={styles.historyDetailCard}>
+                              <div style={styles.feedbackHeaderRow}>
+                                <span style={{ fontWeight: '700', fontSize: '13px' }}>Q{dIdx+1}: {det.question}</span>
+                                <span style={{ color: det.isCorrect ? 'var(--color-green)' : 'var(--color-red)', fontWeight: '700', fontSize: '11px' }}>
+                                  {det.isCorrect ? '✓' : '✗'}
+                                </span>
+                              </div>
+                              <div style={{ fontSize: '12px', marginTop: '6px' }}>
+                                <span style={styles.feedbackLabel}>Answer:</span> {det.userAnswer || '(blank)'}
+                                {!det.isCorrect && (
+                                  <> | <span style={styles.feedbackLabel}>Correct:</span> {det.correctAnswer}</>
+                                )}
+                              </div>
+                              {det.explanation && (
+                                <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>
+                                  Explanation: {det.explanation}
+                                </p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -215,6 +363,7 @@ export default function QuizScreen() {
           </div>
         </main>
       </div>
+      
       {alertMessage && (
         <div className="modal-overlay">
           <div className="glass-panel modal-card-premium">
@@ -241,6 +390,13 @@ const styles = {
     minHeight: '100vh',
     position: 'relative',
   },
+  scrollContainer: {
+    width: '100%',
+    minHeight: '100vh',
+    position: 'relative',
+    overflowY: 'auto',
+    padding: '40px 16px',
+  },
   centerContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -250,6 +406,11 @@ const styles = {
     width: '100%',
     padding: '24px',
     position: 'relative',
+  },
+  wideContent: {
+    width: '100%',
+    maxWidth: '680px',
+    margin: '0 auto',
   },
   loaderContainer: {
     display: 'flex',
@@ -310,7 +471,7 @@ const styles = {
     flexDirection: 'column',
     gap: '24px',
     width: '100%',
-    maxWidth: '680px', // Center and constrain quiz layout
+    maxWidth: '680px',
     margin: '0 auto',
     pointerEvents: 'auto',
   },
@@ -388,5 +549,73 @@ const styles = {
   actionBtn: {
     width: '100%',
     padding: '14px',
+  },
+  feedbackList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+  },
+  feedbackItem: {
+    background: 'rgba(255, 255, 255, 0.02)',
+    border: '1px solid rgba(255, 255, 255, 0.04)',
+    borderRadius: '12px',
+    padding: '16px 20px',
+  },
+  feedbackHeaderRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '8px',
+  },
+  feedbackQuestion: {
+    fontSize: '15px',
+    color: 'var(--text-primary)',
+    marginBottom: '12px',
+    fontWeight: '500',
+  },
+  feedbackAnswersContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px',
+    fontSize: '14px',
+    marginBottom: '12px',
+  },
+  feedbackLabel: {
+    color: 'var(--text-secondary)',
+  },
+  feedbackExplanation: {
+    background: 'rgba(201, 162, 75, 0.05)',
+    borderLeft: '3px solid var(--color-blue)',
+    padding: '10px 14px',
+    borderRadius: '0 8px 8px 0',
+    fontSize: '13px',
+    lineHeight: '1.5',
+    color: 'var(--text-secondary)',
+  },
+  historyRow: {
+    border: '1px solid rgba(255, 255, 255, 0.05)',
+    borderRadius: '10px',
+    overflow: 'hidden',
+  },
+  historyHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '14px 18px',
+    cursor: 'pointer',
+    background: 'rgba(255, 255, 255, 0.01)',
+    transition: 'background 0.2s',
+  },
+  historyExpandedBody: {
+    padding: '14px 18px',
+    borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+    background: 'rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  },
+  historyDetailCard: {
+    borderBottom: '1px dashed rgba(255, 255, 255, 0.05)',
+    paddingBottom: '8px',
   },
 };

@@ -33,17 +33,21 @@ export default function StreakScreen({ setScreen }) {
   // 1. Calculate total streak
   const totalStreak = progressList.reduce((acc, p) => acc + p.streak, 0);
 
-  // 2. Calculate total mastered words
-  const totalMasteredWords = groups.reduce((acc, group) => {
-    const progress = progressList.find(p => p.groupId === group.id);
-    if (progress && progress.quizUnlocked) {
-      return acc + (group._count?.words || 0);
-    }
-    return acc;
+  // 2. Calculate total mastered words by iterating mainWords inside chapters
+  const totalMasteredWords = groups.reduce((acc, chapter) => {
+    const chapMastered = chapter.mainWords?.reduce((sum, mw) => {
+      const progress = progressList.find(p => p.mainWordId === mw.id);
+      if (progress && progress.quizUnlocked) {
+        const count = mw.roots?.reduce((rSum, r) => rSum + (r.derivedWords?.length || 0), 0) || 0;
+        return sum + count;
+      }
+      return sum;
+    }, 0) || 0;
+    return acc + chapMastered;
   }, 0);
 
-  const getGroupStatus = (groupId) => {
-    const progress = progressList.find(p => p.groupId === groupId);
+  const getGroupStatus = (mainWordId) => {
+    const progress = progressList.find(p => p.mainWordId === mainWordId);
     if (!progress || !progress.studied) {
       return { label: 'Not started', badgeBg: 'rgba(255, 255, 255, 0.05)', textColor: 'var(--text-muted)' };
     }
@@ -55,6 +59,8 @@ export default function StreakScreen({ setScreen }) {
     }
     return { label: 'Not started', badgeBg: 'rgba(255, 255, 255, 0.05)', textColor: 'var(--text-muted)' };
   };
+
+  const allMainWords = groups.flatMap(c => c.mainWords || []);
 
   return (
     <div className="animated-fade-in" style={styles.container}>
@@ -91,17 +97,17 @@ export default function StreakScreen({ setScreen }) {
 
             {/* Root Groups Progress List */}
             <div style={styles.listSection}>
-              <h3 style={styles.sectionTitle}>Root Groups Progress</h3>
+              <h3 style={styles.sectionTitle}>Vocabulary Progress</h3>
               <div style={styles.list}>
-                {groups.map((group) => {
-                  const status = getGroupStatus(group.id);
-                  const progress = progressList.find(p => p.groupId === group.id);
+                {allMainWords.map((mw) => {
+                  const status = getGroupStatus(mw.id);
+                  const progress = progressList.find(p => p.mainWordId === mw.id);
                   const streak = progress ? progress.streak : 0;
                   return (
-                    <div key={group.id} className="glass-panel" style={styles.listItem}>
+                    <div key={mw.id} className="glass-panel" style={styles.listItem}>
                       <div style={styles.itemLeft}>
-                        <h4 style={styles.rootText}>{group.root}</h4>
-                        <p style={styles.meaningText}>{group.meaning}</p>
+                        <h4 style={styles.rootText}>{mw.word}</h4>
+                        <p style={styles.meaningText}>{mw.meaning}</p>
                       </div>
                       <div style={styles.itemRight}>
                         <span style={{ ...styles.statusBadge, backgroundColor: status.badgeBg, color: status.textColor }}>

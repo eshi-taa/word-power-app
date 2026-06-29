@@ -21,10 +21,14 @@ const useAuthStore = create((set) => ({
         set({ user, isLoggingIn: false, error: null });
         return user;
       } else {
-        // Custom credentials login (first step: requests OTP)
+        // Custom credentials login (directly issues tokens now!)
         const response = await client.post('/auth/login', { email: emailOrToken, password });
-        set({ isLoggingIn: false });
-        return response.data; // { message, email }
+        const { accessToken, refreshToken, user } = response.data;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        localStorage.setItem('user', JSON.stringify(user));
+        set({ user, isLoggingIn: false, error: null });
+        return user;
       }
     } catch (err) {
       const errorMessage = err.response?.data?.error || err.message || 'Login failed';
