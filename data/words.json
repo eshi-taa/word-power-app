@@ -352,5 +352,320 @@
         ]
       }
     ]
+  },
+  {
+    "chapterTitle": "How To Insult Your Enemies",
+    "order": 4,
+    "mainWords": [
+      {
+        "word": "martinet",
+        "meaning": "严格执行纪律的人 / strict disciplinarian",
+        "roots": [
+          {
+            "name": "martinet",
+            "meaning": "Jean Martinet (17th-century French drillmaster)",
+            "derivedWords": [
+              { "word": "martinet", "definition": "n. 严格执行纪律的人；要求极严的人", "example": "The military drill sergeant was a strict martinet.", "phonetic": "mar-tih-NET" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "sycophant",
+        "meaning": "谄媚者，奉承者 / brown-noser, flatterer",
+        "roots": [
+          {
+            "name": "sykon",
+            "meaning": "fig",
+            "derivedWords": [
+              { "word": "sycophant", "definition": "n. 谄媚者；奉承者", "example": "He is a sycophant who always agrees with the boss.", "phonetic": "SIK-uh-funt" },
+              { "word": "sycophancy", "definition": "n. 谄媚；奉承；追随；拍马屁", "example": "The leader was surrounded by constant sycophancy.", "phonetic": "SIK-uh-fun-see" }
+            ]
+          },
+          {
+            "name": "phanein",
+            "meaning": "to show",
+            "derivedWords": []
+          }
+        ]
+      },
+      {
+        "word": "dilettante",
+        "meaning": "业余爱好者，半吊子 / amateur, dabbler",
+        "roots": [
+          {
+            "name": "dilettare",
+            "meaning": "to delight",
+            "derivedWords": [
+              { "word": "dilettante", "definition": "n. 业余爱好者；半吊子", "example": "She is a dilettante who paints only for leisure.", "phonetic": "dil-uh-TAHNT" },
+              { "word": "dilettantism", "definition": "n. 业余的艺术爱好；浅薄涉猎", "example": "His dilettantism kept him from ever mastering any single instrument.", "phonetic": "dil-uh-TAHN-tiz-um" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "virago",
+        "meaning": "泼妇 / loud-mouthed woman",
+        "roots": [
+          {
+            "name": "vir-",
+            "meaning": "man, male",
+            "derivedWords": [
+              { "word": "virago", "definition": "n. 泼妇；悍妇", "example": "The virago screamed at the street vendor.", "phonetic": "vih-RAH-goh" }
+            ]
+          },
+          {
+            "name": "pater, patris",
+            "meaning": "father",
+            "derivedWords": [
+              { "word": "patrimony", "definition": "n. 遗产；祖传的财物", "example": "He spent his entire patrimony on bad investments.", "phonetic": "PAH-trih-moh-nee" },
+              { "word": "patronymic", "definition": "n. 源于父名的姓或名字 (e.g. Robinson)", "example": "Robinson is a patronymic meaning son of Robin.", "phonetic": "pah-truh-NIM-ik" },
+              { "word": "paternity", "definition": "n. 父权；父系；父亲身份", "example": "A DNA test was ordered to establish paternity.", "phonetic": "puh-TUR-nih-tee" },
+              { "word": "paternal", "definition": "adj. 父亲的；得自父亲的", "example": "My paternal grandfather was a doctor.", "phonetic": "puh-TUR-nul" },
+              { "word": "patriarch", "definition": "n. 家长；族长；男统治者", "example": "The family patriarch gathered everyone for dinner.", "phonetic": "PAY-tree-ark" },
+              { "word": "patricide", "definition": "n. 杀父；杀父者；杀父罪", "example": "He was convicted of patricide after the investigation.", "phonetic": "PAH-trih-side" }
+            ]
+          },
+          {
+            "name": "mater, matris",
+            "meaning": "mother",
+            "derivedWords": [
+              { "word": "matriarch", "definition": "n. 女家长；女统治者", "example": "The matriarch ruled the village with wisdom.", "phonetic": "MAY-tree-ark" },
+              { "word": "maternity", "definition": "n. 母性，母道 adj. 产科的", "example": "She is currently on maternity leave.", "phonetic": "muh-TUR-nih-tee" },
+              { "word": "matron", "definition": "n. 主妇；保姆; 稳重妇女", "example": "The strict school matron kept order in the dorms.", "phonetic": "MAY-trun" },
+              { "word": "matronly", "definition": "adj. 主妇似的；稳重的", "example": "She dressed in a quiet, matronly fashion.", "phonetic": "MAY-trun-lee" },
+              { "word": "alma mater", "definition": "n. 母校", "example": "Harvard is my alma mater.", "phonetic": "al-muh MAH-ter" },
+              { "word": "matrimony", "definition": "n. 结婚，婚礼；婚姻生活", "example": "They joined in holy matrimony.", "phonetic": "MAH-trih-moh-nee" }
+            ]
+          },
+          {
+            "name": "sui",
+            "meaning": "of oneself",
+            "derivedWords": [
+              { "word": "suicide", "definition": "n. 自杀", "example": "The tragic news was reported as a suicide.", "phonetic": "SOO-ih-side" }
+            ]
+          },
+          {
+            "name": "soror",
+            "meaning": "sister",
+            "derivedWords": [
+              { "word": "sorority", "definition": "n. 妇女联谊会；女学生联谊会", "example": "She joined a college sorority during her freshman year.", "phonetic": "suh-ROR-ih-tee" },
+              { "word": "sororicide", "definition": "n. 杀害亲姐妹者或行为", "example": "The play is a dark tragedy about sororicide.", "phonetic": "suh-ROR-ih-side" }
+            ]
+          },
+          {
+            "name": "frater, fratris",
+            "meaning": "brother",
+            "derivedWords": [
+              { "word": "fraternize", "definition": "vi. 友善往来；结交", "example": "Soldiers were forbidden to fraternize with the enemy.", "phonetic": "FRAT-er-nize" },
+              { "word": "fraternal", "definition": "adj. 兄弟般的；友好的", "example": "They shared a deep, fraternal bond.", "phonetic": "fruh-TUR-nul" },
+              { "word": "fratricide", "definition": "n. 杀害兄弟者或行为", "example": "The civil war was a scene of fratricide.", "phonetic": "FRAT-rih-side" }
+            ]
+          },
+          {
+            "name": "homo",
+            "meaning": "human, people",
+            "derivedWords": [
+              { "word": "homicide", "definition": "n. 杀人；杀人犯", "example": "The police treated the case as a homicide.", "phonetic": "HAH-mih-side" }
+            ]
+          },
+          {
+            "name": "rex, regis",
+            "meaning": "king",
+            "derivedWords": [
+              { "word": "regal", "definition": "adj. 帝王的；豪华的", "example": "She had a regal bearing that demanded respect.", "phonetic": "REE-gul" },
+              { "word": "regality", "definition": "n. 王国；王位；王权", "example": "The crown is the ultimate symbol of regality.", "phonetic": "ree-GAL-ih-tee" },
+              { "word": "regalia", "definition": "n. 王权标记；徽章", "example": "The king dressed in full royal regalia.", "phonetic": "ree-GAY-lee-uh" },
+              { "word": "regicide", "definition": "n. 弑君；弑君者；弑君罪", "example": "The assassination of King Charles was a famous regicide.", "phonetic": "REH-jih-side" }
+            ]
+          },
+          {
+            "name": "uxor",
+            "meaning": "wife",
+            "derivedWords": [
+              { "word": "uxorious", "definition": "adj. 溺爱妻子的；怕老婆的", "example": "He is an uxorious husband who agrees to every wish.", "phonetic": "uk-SOR-ee-us" }
+            ]
+          },
+          {
+            "name": "maritus",
+            "meaning": "husband",
+            "derivedWords": [
+              { "word": "marital", "definition": "adj. 婚姻的；夫妇间的", "example": "They resolved their marital differences through counseling.", "phonetic": "MAH-rih-tul" },
+              { "word": "extramarital", "definition": "adj. 婚外的，通奸的", "example": "He confessed to having an extramarital affair.", "phonetic": "eks-truh-MAH-rih-tul" },
+              { "word": "premarital", "definition": "adj. 婚前的", "example": "They signed a premarital agreement.", "phonetic": "pree-MAH-rih-tul" }
+            ]
+          },
+          {
+            "name": "infans, infantis",
+            "meaning": "baby",
+            "derivedWords": []
+          },
+          {
+            "name": "genos",
+            "meaning": "race, kind",
+            "derivedWords": [
+              { "word": "genocide", "definition": "n. 种族灭绝", "example": "The United Nations condemned the genocide.", "phonetic": "JEH-nuh-side" }
+            ]
+          },
+          {
+            "name": "cide",
+            "meaning": "killing",
+            "derivedWords": [
+              { "word": "matricide", "definition": "n. 弑母", "example": "Nero was accused of matricide.", "phonetic": "MAH-trih-side" },
+              { "word": "parricide", "definition": "n. 杀父母（罪）", "example": "He was sent to prison for parricide.", "phonetic": "PAH-rih-side" },
+              { "word": "insecticide", "definition": "n. 杀虫剂", "example": "We sprayed insecticide to protect the crops.", "phonetic": "in-SEK-tih-side" }
+            ]
+          },
+          {
+            "name": "onyma",
+            "meaning": "name",
+            "derivedWords": [
+              { "word": "synonym", "definition": "n. 同义词", "example": "Huge is a synonym for large.", "phonetic": "SIN-uh-nim" },
+              { "word": "antonym", "definition": "n. 反义词", "example": "Cold is the antonym of hot.", "phonetic": "AN-tuh-nim" },
+              { "word": "homonym", "definition": "n. 同音/同形异义词", "example": "The word 'bark' (tree covering vs. dog sound) is a homonym.", "phonetic": "HAH-muh-nim" },
+              { "word": "homophone", "definition": "n. 同音异形字", "example": "To, too, and two are homophones.", "phonetic": "HAH-muh-fone" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "chauvinist",
+        "meaning": "沙文主义者，盲目爱国者 / blind patriot",
+        "roots": [
+          {
+            "name": "chauvinist",
+            "meaning": "Nicolas Chauvin (blindly loyal soldier of Napoleon)",
+            "derivedWords": [
+              { "word": "chauvinist", "definition": "n. 沙文主义者，盲目爱国者", "example": "The politician was a chauvinist who looked down on other nations.", "phonetic": "SHOH-vuh-nist" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "monomaniac",
+        "meaning": "偏执狂 / single-minded fanatic",
+        "roots": [
+          {
+            "name": "monos",
+            "meaning": "one",
+            "derivedWords": [
+              { "word": "monotheism", "definition": "n. 一神教，一神论", "example": "Judaism is a classic example of monotheism.", "phonetic": "MAH-noh-thee-iz-um" }
+            ]
+          },
+          {
+            "name": "mania",
+            "meaning": "madness",
+            "derivedWords": [
+              { "word": "monomania", "definition": "n. 偏执狂；单狂", "example": "His obsession with cleanliness bordered on monomania.", "phonetic": "mah-noh-MAY-nee-uh" },
+              { "word": "monomaniac", "definition": "n. 偏执狂者；狂热者", "example": "The inventor was a monomaniac when it came to perpetual motion.", "phonetic": "mah-noh-MAY-nee-ak" },
+              { "word": "dipsomania", "definition": "n. 饮酒狂；酒精中毒", "example": "His dipsomania led him to spend all his earnings at the pub.", "phonetic": "dip-suh-MAY-nee-uh" },
+              { "word": "kleptomania", "definition": "n. 盗窃癖；偷窃狂", "example": "The wealthy woman had a psychological condition of kleptomania.", "phonetic": "klep-tuh-MAY-nee-uh" },
+              { "word": "pyromania", "definition": "n. 放火狂；纵火癖", "example": "The arsonist was diagnosed with pyromania.", "phonetic": "pie-roh-MAY-nee-uh" },
+              { "word": "megalomania", "definition": "n. 夸大狂；自大狂", "example": "The dictator's megalomania was evident in his giant statues.", "phonetic": "meh-guh-loh-MAY-nee-uh" },
+              { "word": "nymphomaniac", "definition": "n. 女色情狂", "example": "The medical study discussed the history of nymphomaniac cases.", "phonetic": "nim-fuh-MAY-nee-ak" },
+              { "word": "satyromania", "definition": "n. 男色情狂", "example": "He sought therapy for his satyromania.", "phonetic": "sat-uh-roh-MAY-nee-uh" }
+            ]
+          },
+          {
+            "name": "phobia",
+            "meaning": "morbid dread",
+            "derivedWords": [
+              { "word": "claustrophobia", "definition": "n. 幽闭恐怖症", "example": "He felt a wave of claustrophobia inside the tiny elevator.", "phonetic": "klaw-struh-FOH-bee-uh" },
+              { "word": "agoraphobia", "definition": "n. 旷野恐怖症；广场恐怖", "example": "Her agoraphobia made her afraid to leave her house.", "phonetic": "ag-er-uh-FOH-bee-uh" },
+              { "word": "acrophobia", "definition": "n. 恐高症，高处恐怖症", "example": "His acrophobia made hiking in the high mountains impossible.", "phonetic": "ak-ruh-FOH-bee-uh" },
+              { "word": "acrophobe", "definition": "n. 恐高症患者", "example": "The acrophobe refused to look down from the balcony.", "phonetic": "AK-ruh-fobe" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "iconoclast",
+        "meaning": "打破旧习者 / challenger of tradition",
+        "roots": [
+          {
+            "name": "eikon",
+            "meaning": "religious image",
+            "derivedWords": [
+              { "word": "iconoclast", "definition": "n. 偶像破坏者；提倡打破旧习的人", "example": "The artist was an iconoclast who challenged mainstream trends.", "phonetic": "eye-KAH-nuh-klast" }
+            ]
+          },
+          {
+            "name": "klaein",
+            "meaning": "to break",
+            "derivedWords": [
+              { "word": "iconoclasm", "definition": "n. 打破旧习；破坏偶像主义", "example": "The scientific revolution was a time of great iconoclasm.", "phonetic": "eye-KAH-nuh-klaz-um" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "atheist",
+        "meaning": "无神论者 / non-believer in God",
+        "roots": [
+          {
+            "name": "a-",
+            "meaning": "negative prefix",
+            "derivedWords": [
+              { "word": "atheism", "definition": "n. 无神论", "example": "His philosophy was rooted in secular atheism.", "phonetic": "AY-thee-iz-um" },
+              { "word": "agnostic", "definition": "n./adj. 不可知论者/的", "example": "An agnostic believes the existence of God is unknown.", "phonetic": "ag-NAHS-tik" },
+              { "word": "diagnosis", "definition": "n. 诊断", "example": "The doctor confirmed the diagnosis after several tests.", "phonetic": "dye-ug-NOH-sis" },
+              { "word": "diagnostician", "definition": "n. 诊断专家", "example": "She is a skilled diagnostician of rare diseases.", "phonetic": "dye-ug-nahs-TISH-un" },
+              { "word": "prognosis", "definition": "n. 预后；病势预断", "example": "The post-surgery prognosis was excellent.", "phonetic": "prug-NOH-sis" }
+            ]
+          },
+          {
+            "name": "theos",
+            "meaning": "God",
+            "derivedWords": [
+              { "word": "polytheism", "definition": "n. 多神教；多神论", "example": "Ancient Greek religion was based on polytheism.", "phonetic": "PAH-lee-thee-iz-um" },
+              { "word": "pantheism", "definition": "n. 泛神论", "example": "Spinoza was a philosopher famous for his pantheism.", "phonetic": "PAN-thee-iz-um" },
+              { "word": "theology", "definition": "n. 神学；宗教体系", "example": "He spent years studying theology at the seminary.", "phonetic": "thee-AHL-uh-jee" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "lecher",
+        "meaning": "色狼 / lustful man, libertine",
+        "roots": [
+          {
+            "name": "lechier",
+            "meaning": "to lick",
+            "derivedWords": [
+              { "word": "lecher", "definition": "n. 好色之徒；色狼", "example": "The old lecher kept making inappropriate comments.", "phonetic": "LEH-cher" },
+              { "word": "lechery", "definition": "n. 好色；淫荡", "example": "He was famous for his life of drinking and lechery.", "phonetic": "LEH-chuh-ree" },
+              { "word": "libidinous", "definition": "adj. 性欲 of lust;好色的", "example": "The novel was criticized for its libidinous themes.", "phonetic": "lih-BID-ih-nus" },
+              { "word": "lascivious", "definition": "adj. 好色的；淫荡的；挑动情欲的", "example": "She gave him a lascivious wink.", "phonetic": "luh-SIH-vee-us" },
+              { "word": "lubricious", "definition": "adj. 淫荡的；光滑的", "example": "His lubricious behavior made everyone uncomfortable.", "phonetic": "loo-BRIH-shus" },
+              { "word": "lewd", "definition": "adj. 淫荡的；下流的", "example": "He was arrested for making lewd gestures in public.", "phonetic": "LOOD" },
+              { "word": "lustful", "definition": "adj. 好色的；贪欲的", "example": "She tried to ignore his lustful stares.", "phonetic": "LUST-ful" },
+              { "word": "prurient", "definition": "adj. 好色的；渴望的", "example": "The tabloids feed the prurient interest of the public.", "phonetic": "PROO-ree-unt" }
+            ]
+          }
+        ]
+      },
+      {
+        "word": "hypochondriac",
+        "meaning": "臆想狂 / person obsessed with imaginary illness",
+        "roots": [
+          {
+            "name": "hypos",
+            "meaning": "under",
+            "derivedWords": [
+              { "word": "hypochondria", "definition": "n. 忧郁症；臆想病", "example": "His hypochondria made him visit the hospital weekly.", "phonetic": "hie-puh-KAHN-dree-uh" },
+              { "word": "hypochondriac", "definition": "n. 臆想狂；过分忧虑健康者", "example": "The hypochondriac was convinced a sneeze meant a serious disease.", "phonetic": "hie-puh-KAHN-dree-ak" },
+              { "word": "hypotension", "definition": "n. 低血压", "example": "Severe hypotension can cause dizziness and fainting.", "phonetic": "hie-poh-TEN-shun" }
+            ]
+          },
+          {
+            "name": "hyper",
+            "meaning": "over",
+            "derivedWords": [
+              { "word": "hypertension", "definition": "n. 高血压", "example": "Eating too much salt can lead to hypertension.", "phonetic": "hie-per-TEN-shun" }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
