@@ -220,8 +220,23 @@ async function getQuizHistory(req, res, next) {
   }
 }
 
+// 4. Get all quiz results history for the current user
+async function getAllQuizHistory(req, res, next) {
+  try {
+    const userId = req.user.userId;
+    const history = await prisma.quizResult.findMany({
+      where: { userId },
+      orderBy: { takenAt: 'desc' }
+    });
+    res.status(200).json(history);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getQuiz,
   submitQuiz,
-  getQuizHistory
+  getQuizHistory,
+  getAllQuizHistory
 };

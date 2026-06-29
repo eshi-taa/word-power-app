@@ -9,7 +9,8 @@ export default function ProfileScreen() {
     streak: 0,
     wordsMastered: 0,
     groupsStudied: 0,
-    totalWordsPossible: 0
+    totalWordsPossible: 0,
+    accuracy: 0
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,8 +20,12 @@ export default function ProfileScreen() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await client.get('/words/groups');
-      const chapters = response.data;
+      const [groupsRes, historyRes] = await Promise.all([
+        client.get('/words/groups'),
+        client.get('/quiz/history/all')
+      ]);
+      const chapters = groupsRes.data;
+      const history = historyRes.data;
 
       let streak = 0;
       let wordsMastered = 0;
@@ -45,11 +50,22 @@ export default function ProfileScreen() {
         });
       });
 
+      let totalScore = 0;
+      let totalPossible = 0;
+      if (history && history.length > 0) {
+        history.forEach(attempt => {
+          totalScore += attempt.score;
+          totalPossible += 3;
+        });
+      }
+      const accuracy = totalPossible > 0 ? Math.round((totalScore / totalPossible) * 100) : 0;
+
       setStats({
         streak,
         wordsMastered,
         groupsStudied,
-        totalWordsPossible
+        totalWordsPossible,
+        accuracy
       });
     } catch (err) {
       console.error('Error loading stats:', err);
@@ -137,11 +153,11 @@ export default function ProfileScreen() {
                 </div>
 
                 <div style={{ ...styles.metricRow, marginTop: '24px' }}>
-                  <span style={styles.metricName}>Mock Accuracy</span>
-                  <span style={styles.metricValue}>85%</span>
+                  <span style={styles.metricName}>Quiz Accuracy</span>
+                  <span style={styles.metricValue}>{stats.accuracy}%</span>
                 </div>
                 <div style={styles.progressBarBg}>
-                  <div style={{ ...styles.progressBarFill, width: '85%', backgroundColor: 'var(--color-green)' }}></div>
+                  <div style={{ ...styles.progressBarFill, width: `${stats.accuracy}%`, backgroundColor: 'var(--color-green)' }}></div>
                 </div>
               </div>
 
