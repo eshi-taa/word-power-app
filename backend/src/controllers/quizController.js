@@ -96,6 +96,8 @@ async function submitQuiz(req, res, next) {
     const currentBox = progress ? progress.reviewBox : 1;
     const { nextBox, nextReviewDate } = schedulerService.calculateNextLeitner(currentBox, passed);
 
+    const alreadyPassed = progress && progress.quizUnlocked;
+
     // Update userProgress (box + review dates on every attempt; streak/unlock on pass)
     await prisma.userProgress.update({
       where: {
@@ -109,9 +111,11 @@ async function submitQuiz(req, res, next) {
         nextReviewDate,
         ...(passed ? {
           quizUnlocked: true,
-          streak: {
-            increment: 1
-          }
+          ...(!alreadyPassed ? {
+            streak: {
+              increment: 1
+            }
+          } : {})
         } : {})
       }
     });
