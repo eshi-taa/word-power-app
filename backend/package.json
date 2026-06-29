@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "npx prisma migrate deploy && node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
