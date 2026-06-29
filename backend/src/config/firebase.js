@@ -4,9 +4,11 @@ const path = require('path');
 
 let serviceAccount = null;
 
-if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+const serviceAccountEnv = process.env.FIREBASE_SERVICE_ACCOUNT || process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
+
+if (serviceAccountEnv) {
   try {
-    const rawJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON.trim();
+    const rawJson = serviceAccountEnv.trim();
     if (rawJson.startsWith('{')) {
       serviceAccount = JSON.parse(rawJson);
     } else {
@@ -14,7 +16,7 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
       serviceAccount = JSON.parse(decoded);
     }
   } catch (err) {
-    console.error('Error parsing FIREBASE_SERVICE_ACCOUNT_JSON env var:', err);
+    console.error('Error parsing FIREBASE_SERVICE_ACCOUNT env var:', err);
   }
 }
 
