@@ -7,20 +7,33 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(cuid())
-  email       String   @unique
-  name        String?
-  firebaseUid String?  @unique
-  fcmToken    String?
-  createdAt   DateTime @default(now())
-  progress    UserProgress[]
-  quizResults QuizResult[]
+  id                 String   @id @default(cuid())
+  email              String   @unique
+  name               String?
+  phone              String?  @unique
+  passwordHash       String?
+  firebaseUid        String?  @unique
+  fcmToken           String?
+  createdAt          DateTime @default(now())
+  
+  // Custom secure OTP tracking fields
+  otp                String?
+  otpExpires         DateTime?
+  otpAttempts        Int      @default(0)
+  otpSentAt          DateTime?
+  otpSentCountHour   Int      @default(0)
+  otpLastSentHourAt  DateTime?
+  verified           Boolean  @default(false)
+  
+  progress           UserProgress[]
+  quizResults        QuizResult[]
 }
 
 model WordGroup {
   id      String  @id @default(cuid())
   root    String  @unique
   meaning String
+  order   Int     @default(1)
   words   Word[]
   progress UserProgress[]
 }
@@ -44,6 +57,8 @@ model UserProgress {
   studiedAt    DateTime?
   quizUnlocked Boolean   @default(false)
   streak       Int       @default(0)
+  reviewBox    Int       @default(1)
+  nextReviewDate DateTime @default(now())
   user         User      @relation(fields: [userId], references: [id])
   group        WordGroup @relation(fields: [groupId], references: [id])
   @@unique([userId, groupId])

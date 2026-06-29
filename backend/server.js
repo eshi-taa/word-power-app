@@ -14,7 +14,10 @@ const app = express();
 
 // 1. Middlewares in order
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : '*',
+  credentials: true
+}));
 app.use(morgan('dev'));
 app.use(express.json());
 

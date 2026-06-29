@@ -10,10 +10,14 @@ async function getAllGroups(req, res, next) {
   try {
     const userId = req.user.userId;
     const groups = await prisma.wordGroup.findMany({
+      orderBy: {
+        order: 'asc'
+      },
       select: {
         id: true,
         root: true,
         meaning: true,
+        order: true,
         _count: {
           select: { words: true }
         },
@@ -21,7 +25,10 @@ async function getAllGroups(req, res, next) {
           where: { userId },
           select: {
             studied: true,
-            streak: true
+            quizUnlocked: true,
+            streak: true,
+            reviewBox: true,
+            nextReviewDate: true
           }
         }
       }
@@ -166,10 +173,61 @@ async function getUserProgress(req, res, next) {
   }
 }
 
+// 6. Get all groups that are due for review based on Leitner algorithm
+async function getDueGroups(req, res, next) {
+  try {
+    const userId = req.user.userId;
+    const now = new Date();
+
+    const dueProgress = await prisma.userProgress.findMany({
+      where: {
+        userId,
+        studied: true,
+        nextReviewDate: {
+          lte: now
+        }
+      },
+      orderBy: {
+        reviewBox: 'asc'
+      },
+      include: {
+        group: {
+          select: {
+            id: true,
+            root: true,
+            meaning: true,
+            _count: {
+              select: { words: true }
+            }
+          }
+        }
+      }
+    });
+
+    const mappedGroups = dueProgress.map((p) => ({
+      id: p.group.id,
+      root: p.group.root,
+      meaning: p.group.meaning,
+      _count: p.group._count,
+      progress: [{
+        studied: p.studied,
+        streak: p.streak,
+        reviewBox: p.reviewBox,
+        nextReviewDate: p.nextReviewDate
+      }]
+    }));
+
+    res.status(200).json(mappedGroups);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getAllGroups,
   getGroupById,
   markStudied,
   getWordAudio,
-  getUserProgress
+  getUserProgress,
+  getDueGroups
 };

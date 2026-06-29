@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import client from '../api/client';
 import { handleApiError } from '../api/handleError';
+import PerspectiveGrid from '../components/PerspectiveGrid';
 
-export default function QuizScreen({ groupId, setScreen }) {
+export default function QuizScreen() {
+  const { groupId } = useParams();
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState('');
@@ -15,6 +19,7 @@ export default function QuizScreen({ groupId, setScreen }) {
   // Results State
   const [quizFinished, setQuizFinished] = useState(false);
   const [result, setResult] = useState(null); // { score, passed, total }
+  const [alertMessage, setAlertMessage] = useState(null);
 
   const fetchQuizQuestions = async () => {
     setIsLoading(true);
@@ -43,7 +48,7 @@ export default function QuizScreen({ groupId, setScreen }) {
   const handleSubmitAnswer = async (e) => {
     if (e) e.preventDefault();
     if (!currentAnswer.trim()) {
-      alert('Please enter your answer before continuing.');
+      setAlertMessage('Please enter your answer before continuing.');
       return;
     }
 
@@ -70,7 +75,7 @@ export default function QuizScreen({ groupId, setScreen }) {
       setQuizFinished(true);
     } catch (err) {
       console.error('Error submitting quiz answers:', err);
-      alert(handleApiError(err));
+      setAlertMessage(handleApiError(err));
     } finally {
       setIsSubmitting(false);
     }
@@ -83,8 +88,11 @@ export default function QuizScreen({ groupId, setScreen }) {
   if (isLoading) {
     return (
       <div style={styles.centerContainer}>
-        <div style={styles.spinner}></div>
-        <p style={{ marginTop: '16px', color: 'var(--text-secondary)' }}>Preparing your quiz...</p>
+        <PerspectiveGrid />
+        <div style={{ ...styles.loaderContainer, position: 'relative', zIndex: 2 }}>
+          <div style={styles.spinner}></div>
+          <p style={{ marginTop: '16px', color: 'var(--text-secondary)' }}>Preparing your quiz...</p>
+        </div>
       </div>
     );
   }
@@ -93,7 +101,8 @@ export default function QuizScreen({ groupId, setScreen }) {
   if (error) {
     return (
       <div style={styles.centerContainer}>
-        <div className="glass-panel" style={styles.errorContainer}>
+        <PerspectiveGrid />
+        <div className="glass-panel" style={{ ...styles.errorContainer, position: 'relative', zIndex: 2 }}>
           <p style={styles.errorText}>{error}</p>
           <button className="btn btn-primary" onClick={fetchQuizQuestions}>
             Retry
@@ -107,7 +116,8 @@ export default function QuizScreen({ groupId, setScreen }) {
   if (quizFinished && result) {
     return (
       <div className="animated-fade-in" style={styles.centerContainer}>
-        <div className="glass-panel" style={styles.resultsCard}>
+        <PerspectiveGrid />
+        <div className="glass-panel" style={{ ...styles.resultsCard, position: 'relative', zIndex: 2 }}>
           {result.passed ? (
             <div style={styles.resultDetails}>
               <div style={styles.emoji}>🏆🎉</div>
@@ -117,7 +127,7 @@ export default function QuizScreen({ groupId, setScreen }) {
               <button 
                 className="btn btn-success"
                 style={styles.actionBtn}
-                onClick={() => setScreen('Home')}
+                onClick={() => navigate('/dashboard')}
               >
                 Back to Home
               </button>
@@ -145,58 +155,82 @@ export default function QuizScreen({ groupId, setScreen }) {
   // 4. Main Quiz Interface
   return (
     <div className="animated-fade-in" style={styles.container}>
-      {/* Header */}
-      <header className="header-bar">
-        <button className="btn btn-secondary" style={styles.closeBtn} onClick={() => setScreen('Home')}>
-          ✕ Close
-        </button>
-        <span style={styles.progressText}>Question {currentIndex + 1} of {questions.length}</span>
-      </header>
+      {/* Background Perspective Grid */}
+      <PerspectiveGrid />
 
-      {/* Progress Bar */}
-      <div style={styles.progressBarBg}>
-        <div style={{ ...styles.progressBarActive, width: `${progressPercent}%` }} />
-      </div>
-
-      {/* Question Card */}
-      <main style={styles.quizContent}>
-        {currentQuestion && (
-          <div className="glass-panel" style={styles.questionCard}>
-            <span style={styles.questionType}>
-              {currentQuestion.type === 'fill_blank' && '📝 Fill in the blank'}
-              {currentQuestion.type === 'definition' && '📖 Definition match'}
-              {currentQuestion.type === 'context' && '✍️ Context usage'}
-            </span>
-            <h2 style={styles.questionText}>{currentQuestion.question}</h2>
-            {currentQuestion.type === 'fill_blank' && currentQuestion.hint && (
-              <p style={styles.hintText}>💡 Hint: starts with "{currentQuestion.hint}"</p>
-            )}
-          </div>
-        )}
-
-        {/* Answer Form */}
-        <form onSubmit={handleSubmitAnswer} style={styles.form}>
-          <input
-            type="text"
-            className="input-field"
-            placeholder="Type your answer here..."
-            value={currentAnswer}
-            onChange={(e) => setCurrentAnswer(e.target.value)}
-            disabled={isSubmitting}
-            autoFocus
-            required
-          />
-
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={styles.submitBtn}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Grading...' : currentIndex === questions.length - 1 ? 'Finish Quiz' : 'Submit Answer'}
+      {/* Wide Content Wrapper */}
+      <div className="wide-content-wrapper">
+        {/* Header */}
+        <header className="header-bar" style={{ pointerEvents: 'auto' }}>
+          <button className="btn btn-secondary" style={styles.closeBtn} onClick={() => navigate('/dashboard')}>
+            ✕ Close
           </button>
-        </form>
-      </main>
+          <span style={styles.progressText}>Question {currentIndex + 1} of {questions.length}</span>
+        </header>
+
+        {/* Progress Bar */}
+        <div style={{ ...styles.progressBarBg, pointerEvents: 'auto' }}>
+          <div style={{ ...styles.progressBarActive, width: `${progressPercent}%` }} />
+        </div>
+
+        {/* Question Card */}
+        <main style={styles.main}>
+          <div style={styles.content}>
+            {currentQuestion && (
+              <div className="glass-panel" style={styles.questionCard}>
+                <span style={styles.questionType}>
+                  {currentQuestion.type === 'fill_blank' && '📝 Fill in the blank'}
+                  {currentQuestion.type === 'definition' && '📖 Definition match'}
+                  {currentQuestion.type === 'context' && '✍️ Context usage'}
+                </span>
+                <h2 style={styles.questionText}>{currentQuestion.question}</h2>
+                {currentQuestion.type === 'fill_blank' && currentQuestion.hint && (
+                  <p style={styles.hintText}>💡 Hint: starts with "{currentQuestion.hint}"</p>
+                )}
+              </div>
+            )}
+
+            {/* Answer Form */}
+            <form onSubmit={handleSubmitAnswer} style={styles.form}>
+              <input
+                type="text"
+                className="input-field"
+                placeholder="Type your answer here..."
+                value={currentAnswer}
+                onChange={(e) => setCurrentAnswer(e.target.value)}
+                disabled={isSubmitting}
+                autoFocus
+                required
+              />
+
+              <button
+                type="submit"
+                className="btn btn-primary"
+                style={styles.submitBtn}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Grading...' : currentIndex === questions.length - 1 ? 'Finish Quiz' : 'Submit Answer'}
+              </button>
+            </form>
+          </div>
+        </main>
+      </div>
+      {alertMessage && (
+        <div className="modal-overlay">
+          <div className="glass-panel modal-card-premium">
+            <h2 className="modal-title">Notice</h2>
+            <p className="modal-text">{alertMessage}</p>
+            <div className="modal-actions">
+              <button 
+                className="btn btn-primary" 
+                onClick={() => setAlertMessage(null)}
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -204,6 +238,8 @@ export default function QuizScreen({ groupId, setScreen }) {
 const styles = {
   container: {
     width: '100%',
+    minHeight: '100vh',
+    position: 'relative',
   },
   centerContainer: {
     display: 'flex',
@@ -213,6 +249,7 @@ const styles = {
     minHeight: '100vh',
     width: '100%',
     padding: '24px',
+    position: 'relative',
   },
   loaderContainer: {
     display: 'flex',
@@ -232,6 +269,7 @@ const styles = {
     padding: '32px',
     textAlign: 'center',
     maxWidth: '400px',
+    width: '100%',
   },
   errorText: {
     color: 'var(--color-red)',
@@ -254,16 +292,27 @@ const styles = {
     borderRadius: '3px',
     overflow: 'hidden',
     marginBottom: '32px',
+    position: 'relative',
+    zIndex: 2,
   },
   progressBarActive: {
     height: '100%',
     backgroundColor: 'var(--color-blue)',
     transition: 'width 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   },
-  quizContent: {
+  main: {
+    paddingBottom: '40px',
+    position: 'relative',
+    zIndex: 2,
+  },
+  content: {
     display: 'flex',
     flexDirection: 'column',
     gap: '24px',
+    width: '100%',
+    maxWidth: '680px', // Center and constrain quiz layout
+    margin: '0 auto',
+    pointerEvents: 'auto',
   },
   questionCard: {
     textAlign: 'left',
@@ -320,7 +369,7 @@ const styles = {
   resultHeader: {
     fontSize: '24px',
     fontWeight: '800',
-    fontFamily: 'Outfit, sans-serif',
+    fontFamily: "'Fraunces', 'Libre Baskerville', Georgia, serif",
     marginBottom: '8px',
   },
   resultSub: {
@@ -332,7 +381,7 @@ const styles = {
   scoreText: {
     fontSize: '48px',
     fontWeight: '900',
-    fontFamily: 'Outfit, sans-serif',
+    fontFamily: "'Fraunces', 'Libre Baskerville', Georgia, serif",
     color: 'var(--color-blue)',
     marginBottom: '32px',
   },

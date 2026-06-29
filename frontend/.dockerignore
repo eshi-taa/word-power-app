@@ -1,0 +1,10 @@
+node_modules/
+npm-debug.log
+.playwright-browsers/
+test-results/
+dist/
+build/
+.cache/
+.env
+.git
+.gitignore

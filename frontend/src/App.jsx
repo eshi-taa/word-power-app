@@ -1,25 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useAuthStore from './store/authStore';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+
+// Screens
+import LandingScreen from './screens/LandingScreen.jsx';
 import LoginScreen from './screens/LoginScreen.jsx';
 import HomeScreen from './screens/HomeScreen.jsx';
 import WordGroupScreen from './screens/WordGroupScreen.jsx';
 import QuizScreen from './screens/QuizScreen.jsx';
-import StreakScreen from './screens/StreakScreen.jsx';
+import ReviewScreen from './screens/ReviewScreen.jsx';
+import ProfileScreen from './screens/ProfileScreen.jsx';
+import SettingsScreen from './screens/SettingsScreen.jsx';
+import ReferScreen from './screens/ReferScreen.jsx';
 
 export default function App() {
-  const user = useAuthStore((state) => state.user);
   const checkAuth = useAuthStore((state) => state.checkAuth);
   const isLoading = useAuthStore((state) => state.isLoading);
-
-  const [screen, setScreen] = useState('Home'); // 'Home', 'WordGroup', 'Quiz', 'Streak'
-  const [params, setParams] = useState({}); // Stores parameters like { groupId, root }
 
   useEffect(() => {
     // Check local storage session on mount
     checkAuth();
   }, [checkAuth]);
 
-  // Loading Screen
+  // Loading Screen while verifying session
   if (isLoading) {
     return (
       <div style={styles.loadingContainer}>
@@ -29,41 +33,72 @@ export default function App() {
     );
   }
 
-  // Auth Router
-  if (!user) {
-    return (
-      <div className="app-container">
-        <LoginScreen />
-      </div>
-    );
-  }
-
-  // App Screen Switcher
   return (
-    <div className="app-container">
-      {screen === 'Home' && (
-        <HomeScreen setScreen={setScreen} setParams={setParams} />
-      )}
-      
-      {screen === 'WordGroup' && (
-        <WordGroupScreen 
-          groupId={params.groupId} 
-          root={params.root} 
-          setScreen={setScreen} 
+    <BrowserRouter>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<LandingScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
+
+        {/* Protected Routes */}
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <HomeScreen />
+            </ProtectedRoute>
+          } 
         />
-      )}
-      
-      {screen === 'Quiz' && (
-        <QuizScreen 
-          groupId={params.groupId} 
-          setScreen={setScreen} 
+        <Route 
+          path="/group/:groupId" 
+          element={
+            <ProtectedRoute>
+              <WordGroupScreen />
+            </ProtectedRoute>
+          } 
         />
-      )}
-      
-      {screen === 'Streak' && (
-        <StreakScreen setScreen={setScreen} />
-      )}
-    </div>
+        <Route 
+          path="/quiz/:groupId" 
+          element={
+            <ProtectedRoute>
+              <QuizScreen />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/review" 
+          element={
+            <ProtectedRoute>
+              <ReviewScreen />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfileScreen />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/settings" 
+          element={
+            <ProtectedRoute>
+              <SettingsScreen />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/refer" 
+          element={
+            <ProtectedRoute>
+              <ReferScreen />
+            </ProtectedRoute>
+          } 
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
@@ -74,15 +109,15 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '100vh',
-    backgroundColor: '#121224',
-    color: '#a0a6b5',
+    backgroundColor: '#0F1117',
+    color: 'var(--text-secondary)',
     gap: '16px',
   },
   spinner: {
     width: '45px',
     height: '45px',
     border: '4px solid rgba(255, 255, 255, 0.05)',
-    borderTopColor: '#00b4d8',
+    borderTopColor: 'var(--color-blue)',
     borderRadius: '50%',
     animation: 'pulse 1.5s infinite ease-in-out',
   },

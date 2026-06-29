@@ -40,9 +40,12 @@ async function getOrGenerateAudio(wordId, wordText) {
   const ttsUrl = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
 
   const response = await axios.post(ttsUrl, {
-    input: { text: wordText },
-    voice: { languageCode: 'en-US', name: 'en-US-Neural2-D' },
-    audioConfig: { audioEncoding: 'MP3' }
+    input: { ssml: `<speak><break time="600ms"/>${wordText}</speak>` },
+    voice: { languageCode: 'en-GB', name: 'en-GB-Neural2-F' },
+    audioConfig: { 
+      audioEncoding: 'MP3',
+      speakingRate: 0.85
+    }
   });
 
   const audioContent = response.data.audioContent;

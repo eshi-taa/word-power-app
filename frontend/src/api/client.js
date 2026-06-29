@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const API_URL = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:3000/api`;
 
 // Create Axios instance
 const client = axios.create({
@@ -55,6 +55,7 @@ client.interceptors.response.use(
         console.error('Refresh token failed, clearing session:', refreshError);
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
+        localStorage.removeItem('user');
         
         // Trigger page reload to redirect to login if session expires
         window.location.reload();

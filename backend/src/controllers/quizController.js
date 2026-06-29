@@ -1,6 +1,8 @@
 const prisma = require('../config/database');
 const quizService = require('../services/quizService');
+const schedulerService = require('../services/schedulerService');
 const { NotFoundError } = require('../middleware/errors');
+
 
 // 1. Get quiz questions for a word group
 async function getQuiz(req, res, next) {
@@ -81,23 +83,38 @@ async function submitQuiz(req, res, next) {
       }
     });
 
-    // Update userProgress if passed
-    if (passed) {
-      await prisma.userProgress.update({
-        where: {
-          userId_groupId: {
-            userId,
-            groupId
-          }
-        },
-        data: {
+    // Fetch current user progress to determine current box
+    const progress = await prisma.userProgress.findUnique({
+      where: {
+        userId_groupId: {
+          userId,
+          groupId
+        }
+      }
+    });
+
+    const currentBox = progress ? progress.reviewBox : 1;
+    const { nextBox, nextReviewDate } = schedulerService.calculateNextLeitner(currentBox, passed);
+
+    // Update userProgress (box + review dates on every attempt; streak/unlock on pass)
+    await prisma.userProgress.update({
+      where: {
+        userId_groupId: {
+          userId,
+          groupId
+        }
+      },
+      data: {
+        reviewBox: nextBox,
+        nextReviewDate,
+        ...(passed ? {
           quizUnlocked: true,
           streak: {
             increment: 1
           }
-        }
-      });
-    }
+        } : {})
+      }
+    });
 
     res.status(200).json({
       score,

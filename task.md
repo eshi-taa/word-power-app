@@ -15,5 +15,5 @@
 - [x] 8. Create `frontend/Dockerfile`
 - [x] 9. Create root `docker-compose.yml`
 - [x] 10. Verify local web app works (E2E tests pass)
-- [ ] 11. Start Docker Desktop and verify containerized web app works
+- [x] 11. Start Docker Desktop and verify containerized web app works
 
